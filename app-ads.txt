@@ -1,0 +1,3 @@
+# AdMob publisher line: replace pub-0000000000000000 with the real AdMob publisher ID
+# (AdMob console > Account > Settings > Account information), then delete this comment block.
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

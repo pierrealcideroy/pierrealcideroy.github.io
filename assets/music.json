@@ -1,0 +1,41 @@
+{
+ "updated": "2026-11-14T14:35:15.148Z",
+ "albums": [
+  {
+   "name": "Business As Usual",
+   "artist": "Men At Work",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/80/07/23/80072391-3543-cdb9-e298-08d5f0595f41/dj.uyepaoyc.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/business-as-usual/282960957"
+  },
+  {
+   "name": "Revenant",
+   "artist": "Inferi",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ab/7b/14/ab7b143d-54ce-d7aa-260c-d99857ca936e/192562179383.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/revenant/1348075188"
+  },
+  {
+   "name": "Seasons In the Abyss",
+   "artist": "Slayer",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8f/27/a0/8f27a08a-6d42-8f55-be3f-ed094c45aec3/00602547577672.rgb.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/seasons-in-the-abyss/1440838326"
+  },
+  {
+   "name": "The Shape Of Colour",
+   "artist": "Intervals",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/82/67/7d/82677db2-76d4-fdaf-1461-e4f5989e760f/5026854922423.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/the-shape-of-colour/6784421963"
+  },
+  {
+   "name": "Newborn Sun",
+   "artist": "Chon",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/14/31/6a/14316aae-ccc2-7c47-1096-145bf47a0a3f/888174245676.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/newborn-sun/701075070"
+  },
+  {
+   "name": "Grow",
+   "artist": "Chon",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a4/0a/b8/a40ab85c-9630-2bc9-7536-a14357b4d2d3/198704633362_Cover.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/grow/1828877984"
+  }
+ ]
+}

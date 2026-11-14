@@ -2,17 +2,17 @@
    Colours are tokens: light by default, dark from the system or from the theme switch (data-theme on <html>). */
 :root{
   --bg:#fff;--fg:#2e2e2e;--muted:#6a6a6a;--soft:#9b9b9b;--rule:#dcdcdc;--card:#f7f7f5;--chip:#efefec;
-  --accent:#1c6fb8;--wine:#8f1d3b;--logo:#191919;--toast:#2e2e2e;--toast-fg:#fff;
+  --accent:#8f1d3b;--wine:#8f1d3b;--logo:#191919;--toast:#2e2e2e;--toast-fg:#fff;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --sans:Lato,system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
   --bg:#16171d;--fg:#ececee;--muted:#a6a6ae;--soft:#7c7c86;--rule:#2d2f38;--card:#1c1e26;--chip:#252731;
-  --accent:#7fb2ff;--wine:#e5728d;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}}
+  --accent:#e5728d;--wine:#e5728d;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}}
 :root[data-theme=dark]{
   --bg:#16171d;--fg:#ececee;--muted:#a6a6ae;--soft:#7c7c86;--rule:#2d2f38;--card:#1c1e26;--chip:#252731;
-  --accent:#7fb2ff;--wine:#e5728d;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}
+  --accent:#e5728d;--wine:#e5728d;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}

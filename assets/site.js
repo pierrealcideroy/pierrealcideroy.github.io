@@ -9,9 +9,9 @@
   toastEl.className = 'toast'; toastEl.setAttribute('role', 'status');
   document.body.appendChild(toastEl);
   var toastTimer;
-  function toast(msg) {
+  function toast(msg, ms) {
     toastEl.textContent = msg; toastEl.classList.add('on');
-    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, 2200);
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, ms || 2200);
   }
 
   // ---- Email: first click copies, a second click within 3 s opens the mail app ----
@@ -165,7 +165,12 @@
   function go(id) { return function () { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }; }
   function open(url) { return function () { window.open(url, '_blank', 'noopener'); }; }
   var commands = [
-    { name: 'Confetti', hint: 'celebrate something 🎉', run: function () { setTimeout(confetti, 120); } },
+    // Secret: only listed once the visitor has typed at least "conf".
+    { name: 'Confetti', hint: 'celebrate something 🎉', secret: 'conf', run: function () {
+      setTimeout(confetti, 120);
+      var first = true; try { first = !localStorage.getItem('confettiPal'); localStorage.setItem('confettiPal', '1'); } catch (e) {}
+      if (first) setTimeout(function () { toast("Congrats, you found the Confetti command 🎉 You're officially a confetti pal 👏", 5000); }, 600);
+    } },
     { name: 'Now', hint: 'what I am up to', run: go('now') },
     { name: 'Experience', hint: 'the CV part', run: go('experience') },
     { name: 'Skills', hint: 'skills and tools', run: go('skills') },
@@ -183,9 +188,12 @@
   var pal, input, list, shown = [], sel = 0;
   function render() {
     var q = input.value.trim().toLowerCase();
-    shown = commands.filter(function (c) { return !q || c.name.toLowerCase().indexOf(q) >= 0 || c.hint.toLowerCase().indexOf(q) >= 0; });
+    shown = commands.filter(function (c) {
+      if (c.secret) return q.length >= c.secret.length && c.name.toLowerCase().indexOf(q) === 0;
+      return !q || c.name.toLowerCase().indexOf(q) >= 0 || c.hint.toLowerCase().indexOf(q) >= 0;
+    });
     sel = Math.min(sel, Math.max(0, shown.length - 1));
-    list.innerHTML = shown.length ? '' : '<li aria-disabled="true"><small>Nothing for “' + q.replace(/</g, '&lt;') + '”, try confetti</small></li>';
+    list.innerHTML = shown.length ? '' : '<li aria-disabled="true"><small>Nothing for “' + q.replace(/</g, '&lt;') + '”</small></li>';
     shown.forEach(function (c, i) {
       var li = document.createElement('li');
       li.setAttribute('role', 'option'); li.setAttribute('aria-selected', i === sel);

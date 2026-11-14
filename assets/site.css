@@ -138,7 +138,8 @@ blockquote footer{margin-top:14px;color:var(--fg);font-weight:400;font-size:15px
 /* Footer */
 .foot{border-top:1px solid var(--rule);padding:26px 0 40px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;color:var(--muted);font-size:14px}
 .foot .mono{font-size:12.5px}
-.foot .local{flex-basis:100%;margin:0 0 6px;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;letter-spacing:-.01em;color:var(--fg)}
+.foot .local{flex-basis:100%;margin:0 0 6px;font-size:17px;font-weight:700;color:var(--fg)}
+.foot .local .slash{font:400 15px var(--mono);color:var(--wine);margin-right:6px}
 .foot .local #clock{font-variant-numeric:tabular-nums;color:var(--accent)}
 .foot nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px}
 
@@ -177,14 +178,12 @@ dialog[open]{animation:pop .2s ease-out}
   .fab.away{transform:translate(-50%,calc(100% + 40px));opacity:0}
   body:has(dialog[open]) .fab{opacity:0;pointer-events:none}
   .foot{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
-  dialog.palette{width:100%;max-width:100%;margin:auto 0 0;border-radius:20px 20px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom)}
-  dialog.palette[open]{animation:sheet .3s cubic-bezier(.2,.9,.3,1)}
-  dialog.palette::before{content:"";display:block;width:40px;height:5px;border-radius:3px;background:var(--rule);margin:10px auto 0}
-  .palette ul{max-height:55vh}
+  /* Centred card in the upper part of the screen: with the keyboard open, the results stay above it */
+  dialog.palette{margin:calc(12svh + env(safe-area-inset-top)) auto auto;width:calc(100vw - 24px)}
+  .palette ul{max-height:min(38svh,360px)}
   .palette li{padding:13px 12px}
   .palette .hint{display:none}
 }
-@keyframes sheet{from{transform:translateY(100%)}}
 
 /* Konami: the glass fills up */
 .pour{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden}

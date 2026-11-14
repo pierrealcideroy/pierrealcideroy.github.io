@@ -49,7 +49,7 @@
       name: 'Pierre-Antoine Roy',
       headline: h1 ? text(h1).split('—').slice(1).join('—').trim() : undefined,
       about: text($('.lede')),
-      contact: { email: 'hello@pierreantoineroy.com', linkedin: 'https://www.linkedin.com/in/pierre-antoine-roy', bluesky: 'https://bsky.app/profile/pierreantoineroy.com', x: 'https://x.com/pierrealcideroy', website: 'https://pierreantoineroy.com' },
+      contact: { email: 'hello@pierreantoineroy.com', linkedin: 'https://www.linkedin.com/in/pierre-antoine-roy', bluesky: 'https://bsky.app/profile/pierreantoineroy.com', x: 'https://x.com/pierrealcideroy', github: 'https://github.com/pierrealcideroy', website: 'https://pierreantoineroy.com' },
       now: $$('[data-now]').map(function (c) { return { project: c.dataset.now, status: text($('.meta', c)) }; }),
       experience: $$('.job').map(function (j) {
         var meta = text($('.meta', j)).split('|');
@@ -181,6 +181,7 @@
     { name: 'LinkedIn', hint: 'say hi ↗', run: open('https://www.linkedin.com/in/pierre-antoine-roy') },
     { name: 'Bluesky', hint: '@pierreantoineroy.com ↗', run: open('https://bsky.app/profile/pierreantoineroy.com') },
     { name: 'X', hint: '@pierrealcideroy ↗', run: open('https://x.com/pierrealcideroy') },
+    { name: 'GitHub', hint: 'my code ↗', run: open('https://github.com/pierrealcideroy') },
     { name: 'WhatsApp', hint: 'chat with me ↗', run: open('https://wa.me/message/7NE462RQVZXAL1') },
     { name: 'Email', hint: 'copy my address', run: function () { copyEmail('hello@pierreantoineroy.com'); } },
     { name: 'Resume as JSON', hint: 'my CV, the geeky way', run: showJson },
@@ -268,9 +269,9 @@
   // ---- Footer: my local time, live ----
   var clock = $('#clock');
   if (clock && window.Intl) {
-    var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit' });
+    var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit', second: '2-digit' });
     var tick = function () { clock.textContent = fmt.format(new Date()); };
-    tick(); setInterval(tick, 10000);
+    tick(); setInterval(tick, 1000);
   }
 
   // ---- For the curious ones who open the console ----

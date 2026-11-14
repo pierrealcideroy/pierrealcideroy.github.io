@@ -14,7 +14,8 @@
 <script>
 // Before anything paints: the theme the visitor picked, and the intro unless they asked for reduced motion.
 try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro');
+// The PA intro plays once per visit (sessionStorage lives as long as the tab: reloads and pages in it skip the intro).
+try{if(!sessionStorage.getItem('introSeen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');sessionStorage.setItem('introSeen','1')}}catch(e){}
 </script>
 <!-- Who I am, for search engines and AI answers (schema.org). Keep it in sync with the page. -->
 <script type="application/ld+json">

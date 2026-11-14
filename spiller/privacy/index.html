@@ -89,7 +89,7 @@
   <h1>Privacy policy<span class="caret" aria-hidden="true"></span></h1>
   <p class="updated"><span class="slash">//</span>Spiller! · Last updated <time datetime="2026-11-14">14 November 2026</time></p>
   <p class="lede">Spiller (also listed as &ldquo;Spiller!&rdquo;) is a one-tap mobile game for iOS and Android. This policy explains what data the game uses, why, and what choices you have.</p>
-  <details class="toc" open><summary><span class="arrow">›</span>On this page</summary><ol><li><a href="#who-is-responsible">Who is responsible</a></li><li><a href="#in-short">In short</a></li><li><a href="#data-stored-on-your-device">Data stored on your device</a></li><li><a href="#data-processed-by-third-party-services">Data processed by third-party services</a></li><li><a href="#tracking-on-ios">Tracking on iOS</a></li><li><a href="#legal-bases-gdpr">Legal bases (GDPR)</a></li><li><a href="#retention">Retention</a></li><li><a href="#international-transfers">International transfers</a></li><li><a href="#your-choices-and-rights">Your choices and rights</a></li><li><a href="#children">Children</a></li><li><a href="#changes">Changes</a></li><li><a href="#contact">Contact</a></li></ol></details>
+  <details class="toc" open><summary><span class="arrow">›</span>On this page</summary><ol><li><a href="#who-is-responsible">Who is responsible</a></li><li><a href="#in-short">In short</a></li><li><a href="#data-stored-on-your-device">Data stored on your device</a></li><li><a href="#data-processed-by-third-party-services">Data processed by third-party services</a></li><li><a href="#tracking-on-ios">Tracking on iOS</a></li><li><a href="#notifications">Notifications</a></li><li><a href="#legal-bases-gdpr">Legal bases (GDPR)</a></li><li><a href="#retention">Retention</a></li><li><a href="#international-transfers">International transfers</a></li><li><a href="#your-choices-and-rights">Your choices and rights</a></li><li><a href="#children">Children</a></li><li><a href="#changes">Changes</a></li><li><a href="#contact">Contact</a></li></ol></details>
 <h2 id="who-is-responsible">Who is responsible</h2>
 <p>Pierre-Antoine Roy, an individual developer based in Belgium (&ldquo;I&rdquo;). Contact: <a href="mailto:hello@pierreantoineroy.com">hello@pierreantoineroy.com</a>.</p>
 
@@ -99,26 +99,31 @@
 <li>Your progress (best score, coins, purchases you made, settings) is stored on your device.</li>
 <li>Crash reports are collected so I can fix bugs.</li>
 <li>Usage statistics and personalised ads are only used if you agree in the consent screen shown at first launch. You can change your mind at any time in Settings &gt; Privacy choices.</li>
+<li>Optional reminders are local notifications created on your device; nothing is sent to a server to send them.</li>
 <li>The game is not directed at children.</li>
 </ul>
 
 <h2 id="data-stored-on-your-device">Data stored on your device</h2>
-<p>Best score, coin balance, owned items and the selected one, sound and vibration settings, daily bonus date, achievements progress and tutorial progress are saved locally. I do not receive this data. Deleting the app deletes it. During testing versions, game logs (score, duration, per-layer results) may also be written to files on your device; they are not sent anywhere by the game.</p>
+<p>Best score, coin balance, owned items and the selected one, sound, vibration and notification settings, the timer of the free gift, your daily card stamps, the number of coin videos watched today, achievements progress, tutorial progress and the date of the last rating request are saved locally. I do not receive this data. Deleting the app deletes it. During testing versions, game logs (score, duration, per-layer results) may also be written to files on your device; they are not sent anywhere by the game.</p>
 
 <h2 id="data-processed-by-third-party-services">Data processed by third-party services</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Third-party services"><table>
 <tr><th>Service</th><th>Purpose</th><th>Data</th><th>When</th></tr>
 <tr><td>Firebase Crashlytics (Google)</td><td>Detect and fix crashes</td><td>Crash logs, device model, OS version, app version, a random installation identifier, recent in-game events</td><td>Always</td></tr>
-<tr><td>Firebase Analytics (Google)</td><td>Understand how the game is played (for example number of games, scores, retention) to balance and improve it</td><td>Events such as game start and end, score, purchases of in-game items; random app instance identifier; device, OS and approximate location derived from IP address</td><td>Only if you consent</td></tr>
+<tr><td>Firebase Analytics (Google)</td><td>Understand how the game is played (for example number of games, scores, retention) to balance and improve it</td><td>Events such as game start and end, score, free gifts opened, daily card stamps, answers to the notification prompt, purchases of in-game items; random app instance identifier; device, OS and approximate location derived from IP address</td><td>Only if you consent</td></tr>
 <tr><td>Google AdMob and Google User Messaging Platform</td><td>Show banner, interstitial and rewarded video ads; record your consent choice</td><td>IP address, device and OS information, advertising identifier (if allowed), ad interactions; your consent choice. Personalised ads only with your consent, otherwise non-personalised ads</td><td>Ads are shown unless you removed them with the &ldquo;Remove ads&rdquo; purchase; rewarded videos are always your choice</td></tr>
 <tr><td>Unity Ads (Unity Technologies), through Google AdMob mediation</td><td>Compete with Google to supply the banner, interstitial and rewarded video ads shown in the game, including playable ads</td><td>IP address, device and OS information, advertising identifier (if allowed), ad interactions; your consent choice is passed on to it. Personalised ads only with your consent</td><td>When an ad is requested, under the same rules as AdMob</td></tr>
 <tr><td>Apple App Store / Google Play</td><td>Process in-app purchases (coin packs, remove ads)</td><td>Handled entirely by Apple or Google; I never see your payment details, only that a purchase was completed</td><td>When you buy</td></tr>
 <tr><td>Apple Game Center</td><td>Leaderboards and achievements (iOS)</td><td>Your Game Center player profile, scores and achievements, under Apple&rsquo;s privacy policy</td><td>If you are signed in to Game Center</td></tr>
+<tr><td>Apple App Store / Google Play</td><td>Show the store&rsquo;s own rating window</td><td>Your rating and review, handled entirely by Apple or Google; I only see public reviews in the store</td><td>Occasionally, after a new best score</td></tr>
 </table></div>
 <p>Their own policies apply: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google</a>, <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">how Google uses data from apps that use its services</a>, <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple</a>, <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" target="_blank" rel="noopener">Unity</a>. Google and Unity may act as independent controllers for ad-related data.</p>
 
 <h2 id="tracking-on-ios">Tracking on iOS</h2>
 <p>If Apple&rsquo;s App Tracking Transparency prompt appears, you can refuse. The game works the same either way; ads are then non-personalised.</p>
+
+<h2 id="notifications">Notifications</h2>
+<p>If you allow it, the game schedules reminders on your device, for example when your free gift is ready or on the last day of your daily card, at most one a day. They are local notifications: the game creates them on your device, no server is involved and no notification token or personal data is sent to me. Spiller only asks for permission after you open a gift, and only if you say yes in the game first. You can turn them off anytime in Settings &gt; Notifs, or in your device settings.</p>
 
 <h2 id="legal-bases-gdpr">Legal bases (GDPR)</h2>
 <ul>
@@ -136,6 +141,7 @@
 <h2 id="your-choices-and-rights">Your choices and rights</h2>
 <ul>
 <li>Open Settings &gt; Privacy choices in the game to change your consent at any time.</li>
+<li>Turn reminders on or off in Settings &gt; Notifs, or in your device&rsquo;s notification settings.</li>
 <li>Reset your advertising identifier or limit ad tracking in your device settings.</li>
 <li>Under the GDPR you may request access, correction, deletion, restriction or portability of your data, and object to processing. Because I cannot identify you from the random identifiers, you may need to provide the identifier or device details; write to <a href="mailto:hello@pierreantoineroy.com">hello@pierreantoineroy.com</a>.</li>
 <li>You may complain to your data protection authority; in Belgium, the <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">Data Protection Authority</a>.</li>

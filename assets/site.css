@@ -173,14 +173,15 @@ blockquote footer{margin-top:14px;color:var(--fg);font-weight:400;font-size:15px
 #support summary{font-size:17px}
 #support details p{margin:10px 0 4px 18px;color:var(--muted);font-weight:300;max-width:62ch}
 
-/* Company logos: initials until the file exists in assets/logos/, then the logo covers them.
-   Grey like the photo, real colours when the job (or card) is hovered. */
-.logo{position:relative;display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:12px;overflow:hidden;
-  background:var(--chip);color:var(--muted);font:700 14px var(--sans);letter-spacing:.02em}
-.logo::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat;filter:grayscale(1);transition:filter .3s}
-.job:hover .logo::after,.card:hover .logo::after,.with-logo:hover .logo::after{filter:none}
-.logo.lg{width:56px;height:56px;border-radius:14px;font-size:18px}
-.logo.sm{width:36px;height:36px;border-radius:10px;font-size:12px}
+/* Company logos (assets/logos/, 256 x 256): grey like the photo; on hover of the job, card or degree they
+   get their colours and tilt with the same springy move as the Spiller icon. */
+.logo{display:block;flex:none;width:44px;height:44px;border-radius:12px;overflow:hidden;background:var(--chip);
+  transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.logo img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .3s}
+.job:hover .logo,.card:hover .logo,.with-logo:hover .logo{transform:rotate(-8deg)}
+.job:hover .logo img,.card:hover .logo img,.with-logo:hover .logo img{filter:none}
+.logo.lg{width:56px;height:56px;border-radius:14px}
+.logo.sm{width:36px;height:36px;border-radius:10px}
 .job{display:grid;grid-template-columns:44px 1fr;column-gap:16px}
 .job>.logo{grid-row:1/span 3;margin-top:4px}
 .job>:not(.logo){grid-column:2}

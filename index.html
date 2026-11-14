@@ -15,6 +15,93 @@
 try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro');
 </script>
+<!-- Who I am, for search engines and AI answers (schema.org). Keep it in sync with the page. -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "ProfilePage",
+   "@id": "https://pierreantoineroy.com/#page",
+   "url": "https://pierreantoineroy.com/",
+   "name": "Pierre-Antoine Roy — Creating Content at AppTweak",
+   "inLanguage": "en",
+   "dateModified": "2026-11-14",
+   "mainEntity": {
+    "@id": "https://pierreantoineroy.com/#person"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://pierreantoineroy.com/#person",
+   "name": "Pierre-Antoine Roy",
+   "url": "https://pierreantoineroy.com/",
+   "image": "https://pierreantoineroy.com/assets/pa.jpg",
+   "email": "mailto:hello@pierreantoineroy.com",
+   "jobTitle": "Content Creator",
+   "description": "Creates data-driven content on App Store Optimization, app marketing and mobile growth at AppTweak, and makes games after hours.",
+   "worksFor": {
+    "@type": "Organization",
+    "name": "AppTweak",
+    "url": "https://www.apptweak.com",
+    "sameAs": [
+     "https://www.linkedin.com/company/apptweak-com/"
+    ]
+   },
+   "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Université de Tours",
+    "sameAs": "https://www.linkedin.com/school/universite-de-tours/"
+   },
+   "knowsLanguage": [
+    "fr",
+    "en",
+    "es"
+   ],
+   "knowsAbout": [
+    "App Store Optimization",
+    "App marketing",
+    "Content strategy",
+    "SEO",
+    "Answer Engine Optimization",
+    "Product design",
+    "Growth marketing",
+    "Game design"
+   ],
+   "homeLocation": {
+    "@type": "Place",
+    "name": "Brussels, Belgium"
+   },
+   "sameAs": [
+    "https://www.linkedin.com/in/pierre-antoine-roy",
+    "https://bsky.app/profile/pierreantoineroy.com",
+    "https://x.com/pierrealcideroy"
+   ]
+  },
+  {
+   "@type": "MobileApplication",
+   "@id": "https://pierreantoineroy.com/#spiller",
+   "name": "Spiller!",
+   "applicationCategory": "GameApplication",
+   "operatingSystem": "iOS",
+   "url": "https://apps.apple.com/app/id6828435267",
+   "image": "https://pierreantoineroy.com/assets/spiller-icon.png",
+   "description": "A one-tap mobile game: hold to pour, release right on the line.",
+   "author": {
+    "@id": "https://pierreantoineroy.com/#person"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "sameAs": [
+    "https://www.instagram.com/spiller_game/"
+   ]
+  }
+ ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
 <link rel="stylesheet" href="/assets/site.css">

@@ -164,7 +164,8 @@
   }
 
   // ---- Command palette: ⌘K / Ctrl+K or "/" ----
-  function go(id) { return function () { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }; }
+  // Scrolls to a section of this page, or opens it on the home page when it's not here.
+  function go(id) { return function () { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); else location.href = '/#' + id; }; }
   function open(url) { return function () { window.open(url, '_blank', 'noopener'); }; }
   var commands = [
     // Secret: only listed once the visitor has typed at least "conf".
@@ -177,7 +178,7 @@
     { name: 'Experience', hint: 'the CV part', run: go('experience') },
     { name: 'Skills', hint: 'skills and tools', run: go('skills') },
     { name: 'AppTweak', hint: 'apptweak.com ↗', run: open('https://www.apptweak.com') },
-    { name: 'Spiller!', hint: 'my game on the App Store ↗', run: open('https://apps.apple.com/app/id6828435267') },
+    { name: 'Spiller!', hint: 'my game', run: function () { location.href = '/spiller/'; } },
     { name: 'LinkedIn', hint: 'say hi ↗', run: open('https://www.linkedin.com/in/pierre-antoine-roy') },
     { name: 'Bluesky', hint: '@pierreantoineroy.com ↗', run: open('https://bsky.app/profile/pierreantoineroy.com') },
     { name: 'X', hint: '@pierrealcideroy ↗', run: open('https://x.com/pierrealcideroy') },
@@ -187,6 +188,7 @@
     { name: 'Resume as JSON', hint: 'my CV, the geeky way', run: showJson },
     { name: 'Theme', hint: 'lights on / off', run: toggleTheme },
     { name: 'Source', hint: 'this site on GitHub ↗', run: open('https://github.com/pierrealcideroy/pierrealcideroy.github.io') },
+    { name: 'Home', hint: 'pierreantoineroy.com', run: function () { location.href = '/'; } },
     { name: 'Top', hint: 'back to the top', run: function () { scrollTo({ top: 0, behavior: 'smooth' }); } }
   ];
   var pal, input, list, shown = [], sel = 0;

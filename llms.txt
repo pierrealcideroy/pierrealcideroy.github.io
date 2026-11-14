@@ -10,7 +10,7 @@
 ## Now
 
 - [AppTweak](https://www.apptweak.com): content on ASO, app marketing and mobile growth, from the blog to LinkedIn, newsletters and video
-- [Spiller! on the App Store](https://apps.apple.com/app/id6828435267): a one-tap mobile game (hold to pour, release right on the line), designed and built in Unity. Android coming soon. Instagram: [@spiller_game](https://www.instagram.com/spiller_game/)
+- [Spiller!](https://pierreantoineroy.com/spiller/) ([App Store](https://apps.apple.com/app/id6828435267)): a one-tap mobile game (hold to pour, release right on the line), designed and built in Unity. Android coming soon. Instagram: [@spiller_game](https://www.instagram.com/spiller_game/)
 
 ## Experience
 

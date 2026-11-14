@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Spiller!</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://pierreantoineroy.com/spiller/">
+<script>
+// One link for Instagram, share texts and posters: sends each visitor to the right place.
+// iPhone / iPad (iPadOS reports itself as a Mac with touch) -> App Store, with a campaign tag.
+// Everyone else (Android while it's in testing, computers) -> the Spiller page.
+(function () {
+  var ua = navigator.userAgent;
+  var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var src = new URLSearchParams(location.search).get('from') || 'website';
+  var appStore = 'https://apps.apple.com/app/apple-store/id6828435267?ct=' + encodeURIComponent(src) + '&mt=8';
+  location.replace(ios ? appStore : '/spiller/' + (/Android/.test(ua) ? '#support' : ''));
+})();
+</script>
+<meta http-equiv="refresh" content="2;url=/spiller/">
+</head>
+<body style="font:16px system-ui,sans-serif;text-align:center;padding:3rem 1rem">
+<p>Taking you to Spiller!… <a href="/spiller/">Continue</a></p>
+</body></html>

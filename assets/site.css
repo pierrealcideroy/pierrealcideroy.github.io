@@ -135,6 +135,29 @@ blockquote footer{margin-top:14px;color:var(--fg);font-weight:400;font-size:15px
 .who img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none}
 .who small{color:var(--muted);font-size:14px}
 
+/* Spiller page */
+.crumb{display:inline-block;font-size:15px;color:var(--muted);text-decoration:none;margin-bottom:22px}
+.crumb:hover{color:var(--accent)}
+.app-hero{display:grid;gap:40px;align-items:center;padding:16px 0 64px}
+@media (min-width:880px){.app-hero{grid-template-columns:1fr 300px;gap:64px}}
+.app-icon{display:block;width:96px;height:96px;border-radius:22px;box-shadow:0 10px 30px #0002;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.app-icon:hover{transform:rotate(-8deg) scale(1.05)}
+.app-hero h1{margin:24px 0 4px}
+.app-sub{margin:0 0 18px;font-size:clamp(1.1rem,2.4vw,1.4rem);color:var(--soft)}
+.btn.cta{color:var(--bg);background:var(--fg);border-color:var(--fg);font:700 15px var(--sans);padding:11px 18px}
+.btn.cta:hover{color:var(--bg);background:var(--wine);border-color:var(--wine)}
+.btn.cta .ico{width:16px;height:16px}
+.phone{margin:0 auto;width:min(300px,78vw);aspect-ratio:480/1040;border-radius:36px;overflow:hidden;background:var(--card);border:6px solid var(--fg);box-shadow:0 30px 60px #0003}
+.phone video{display:block;width:100%;height:100%;object-fit:cover}
+.app-section{padding-bottom:56px}
+.muted{color:var(--muted);font-weight:300;max-width:62ch;margin:0 0 16px}
+.shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;scrollbar-width:thin}
+.shots img{flex:none;width:clamp(170px,22vw,230px);height:auto;border-radius:18px;scroll-snap-align:start;box-shadow:0 8px 24px #0002;transition:transform .25s}
+.shots img:hover{transform:translateY(-4px)}
+#support details{border-bottom:1px solid var(--rule);padding:12px 0;margin:0}
+#support summary{font-size:17px}
+#support details p{margin:10px 0 4px 18px;color:var(--muted);font-weight:300;max-width:62ch}
+
 /* Footer */
 .foot{border-top:1px solid var(--rule);padding:26px 0 40px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;color:var(--muted);font-size:14px}
 .foot .mono{font-size:12.5px}

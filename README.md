@@ -9,6 +9,8 @@ Personal site of Pierre-Antoine Roy, served by GitHub Pages (domain in `CNAME`).
 | `assets/site.css` | All styles. Colours are tokens at the top (light, then dark) |
 | `assets/site.js` | Command palette (⌘K, or the Commands pill on phones), resume as JSON, theme switch, email copy, confetti, Konami code, local time, last update |
 | `assets/intro.js` | PA logo that writes itself on load |
+| `spiller/` | Spiller! page: trailer, screenshots, pouring sets, support and FAQ (media in `spiller/media/`) |
+| `spiller/get/` | Smart link for Instagram and posters: iPhone to the App Store (tag `?from=instagram` becomes the campaign), others to the Spiller page |
 | `spiller/privacy/` | Spiller! privacy policy (linked from the App Store and Google Play) |
 | `app-ads.txt` | AdMob seller declaration for Spiller! |
 | `robots.txt`, `sitemap.xml` | Crawlers welcome (AI included), list of pages |

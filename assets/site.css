@@ -187,6 +187,35 @@ blockquote footer{margin-top:14px;color:var(--fg);font-weight:400;font-size:15px
 .job>:not(.logo){grid-column:2}
 h4.with-logo{display:flex;align-items:flex-start;gap:12px}
 
+/* Article pages (privacy policy, future posts): breadcrumb, title, date, table of contents, readable text */
+.prose{max-width:72ch;padding:8px 0 64px}
+.crumbs{font-size:14px;color:var(--soft);margin-bottom:22px}
+.crumbs a{color:var(--muted);text-decoration:none}
+.crumbs a:hover{color:var(--accent)}
+.prose h1{font-size:clamp(2rem,5vw,3.2rem);margin:0 0 12px}
+.updated{font:400 14px var(--mono);color:var(--muted);margin:0 0 24px}
+.updated .slash{color:var(--wine);margin-right:6px}
+.prose .lede{margin-bottom:28px}
+.toc{border:1px solid var(--rule);border-radius:14px;padding:14px 18px;margin:0 0 36px;background:var(--card)}
+.toc ol{margin:10px 0 0;padding-left:22px;columns:2;column-gap:32px;font-size:15px}
+.toc li{margin:4px 0;break-inside:avoid}
+.toc a{color:var(--muted);text-decoration:none}
+.toc a:hover{color:var(--accent)}
+@media (max-width:599px){.toc ol{columns:1}}
+.prose h2{font-size:21px;margin:40px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--rule);scroll-margin-top:24px}
+.prose h2::before{content:"//";font:400 15px var(--mono);color:var(--wine);margin-right:8px}
+.prose p,.prose li{color:var(--muted);font-weight:300}
+.prose ul{padding-left:20px}
+.prose li{margin:6px 0}
+.prose a{color:var(--fg)}
+.table-wrap{overflow-x:auto;margin:16px 0;border:1px solid var(--rule);border-radius:12px}
+.prose table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+.prose th,.prose td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--rule)}
+.prose th{font-weight:700;background:var(--card);color:var(--fg)}
+.prose td{color:var(--muted);font-weight:300}
+.prose td:first-child{color:var(--fg);font-weight:400}
+.prose tr:last-child td{border-bottom:0}
+
 /* Footer */
 .foot{border-top:1px solid var(--rule);padding:26px 0 40px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;color:var(--muted);font-size:14px}
 .foot .mono{font-size:12.5px}

@@ -94,7 +94,7 @@ try{if(!sessionStorage.getItem('introSeen')&&!matchMedia('(prefers-reduced-motio
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=20261114l">
+<link rel="stylesheet" href="/assets/site.css?v=20261114n">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -314,9 +314,16 @@ try{if(!sessionStorage.getItem('introSeen')&&!matchMedia('(prefers-reduced-motio
   <noscript><p class="muted"><a href="https://bsky.app/profile/pierreantoineroy.com">See my posts on Bluesky ↗</a></p></noscript>
 </section>
 
+<!-- Albums I played recently on Apple Music: assets/music.json, refreshed every 3 hours by .github/workflows/music.yml.
+     Hidden until that file exists. -->
+<section class="music" id="music" hidden>
+  <h2 class="label"><span><span class="slash">//</span>On repeat</span> <span class="music-src">Apple Music</span></h2>
+  <ul class="albums" id="albums"></ul>
+</section>
+
 <section class="talk" id="contact">
   <h2 class="label"><span><span class="slash">//</span>Let's talk</span></h2>
-  <p class="lede">Got an idea, a project or a question? Pick a channel.</p>
+  <p class="lede">Got an idea, a project or a question? Let's chat!</p>
   <div class="links">
     <a class="btn book" href="https://calendar.notion.so/meet/pierre-antoine-6c1i902our/u1fg04y05" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-calendar"/></svg>Book a call</a>
     <a class="btn round wa open" href="https://wa.me/message/7NE462RQVZXAL1" target="_blank" rel="noopener" aria-label="Chat with me on WhatsApp"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-whatsapp"/></svg><span class="say">Let's chat!</span></a>
@@ -343,6 +350,6 @@ try{if(!sessionStorage.getItem('introSeen')&&!matchMedia('(prefers-reduced-motio
 
 <!-- Phones only: the command palette lives in a floating pill at the bottom, within thumb reach. -->
 <button class="fab" id="fab" type="button" aria-label="Open the command palette"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>Commands</button>
-<script src="/assets/site.js?v=20261114l" defer></script>
-<script src="/assets/intro.js?v=20261114l" defer></script>
+<script src="/assets/site.js?v=20261114n" defer></script>
+<script src="/assets/intro.js?v=20261114n" defer></script>
 </body></html>

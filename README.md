@@ -28,6 +28,13 @@ CSS and JS links carry a version tag (`?v=…`): bump it in `index.html`, `spill
 
 Edit, commit, push to `main`: the site updates in about a minute.
 
+## On repeat (Apple Music)
+
+`.github/workflows/music.yml` runs every 3 hours: `tools/music/fetch.mjs` asks the Apple Music API for my recently played albums and commits `assets/music.json`, which the home page reads. The section stays hidden while that file doesn't exist.
+
+Repository secrets (Settings > Secrets and variables > Actions): `MUSICKIT_PRIVATE_KEY` (content of the .p8 key), `MUSICKIT_KEY_ID`, `APPLE_TEAM_ID`, `MUSIC_USER_TOKEN`.
+The Music User Token expires about every 6 months: run `node tools/music/token.mjs AuthKey.p8 KEY_ID TEAM_ID`, paste the result in `tools/music/auth.html` (open it locally), authorize, and update the secret.
+
 ## Ideas for later
 
 - Mini-game: a one-glass version of Spiller! on the home page (hold to pour, release on the line, confetti on a Perfect, App Store badge). Built and removed on 2026-11-14 (commit 3646dda has the code); PA prefers a Substack or Bluesky feed there for now.

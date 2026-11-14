@@ -1,6 +1,7 @@
 # Everyone is welcome, search engines and AI assistants alike.
 User-agent: *
 Allow: /
+Disallow: /tools/
 
 # AI crawlers, named explicitly so the intent is clear.
 User-agent: GPTBot

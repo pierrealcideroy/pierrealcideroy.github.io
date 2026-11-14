@@ -230,6 +230,16 @@ h4.with-logo{display:flex;align-items:flex-start;gap:12px}
 .post-link{font-size:14px;color:var(--muted);border-left:3px solid var(--rule);padding-left:10px;overflow-wrap:anywhere}
 .post-stats{margin-top:auto;display:flex;gap:14px;font-size:14px;color:var(--soft)}
 
+/* On repeat: recently played albums (home page) */
+.music{padding-bottom:56px}
+.music-src{font:400 13px var(--mono);color:var(--soft)}
+.albums{list-style:none;padding:0;margin:0;display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+.albums a{display:block;text-decoration:none;color:inherit}
+.albums img{display:block;width:100%;height:auto;aspect-ratio:1;border-radius:12px;object-fit:cover;background:var(--chip);box-shadow:0 8px 20px #0002;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.albums a:hover img{transform:rotate(-4deg) scale(1.03)}
+.album-name{margin:10px 0 0;font-size:15px;line-height:1.3;color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.album-artist{margin:2px 0 0;font-size:14px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
 /* Contact (home page, "Let's talk") */
 .talk{padding-bottom:64px}
 .talk .lede{margin-bottom:6px}

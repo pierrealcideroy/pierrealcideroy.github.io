@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Apple Music authorization (setup tool)</title>
+<style>
+body{font:16px/1.5 system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1rem}
+textarea{width:100%;height:7rem;font:13px ui-monospace,Menlo,monospace}
+button{font:inherit;padding:.5rem 1rem;margin:.5rem 0}
+.ok{color:#1a7f37}.err{color:#c8243b}
+</style>
+<!-- Apple's MusicKit JS: shows Apple's own sign-in window and returns your Music User Token. -->
+<script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js" data-web-components async></script>
+</head>
+<body>
+<h1>Apple Music authorization</h1>
+<p>One-time setup for the "On repeat" section. Nothing here is saved or sent anywhere except to Apple.</p>
+<ol>
+  <li>Paste the developer token printed by <code>node tools/music/token.mjs …</code>.</li>
+  <li>Click Authorize and sign in to Apple Music in Apple's window.</li>
+  <li>Copy the Music User Token into the GitHub secret <code>MUSIC_USER_TOKEN</code>, then close this page.</li>
+</ol>
+<label for="dev">Developer token</label>
+<textarea id="dev" spellcheck="false"></textarea>
+<button id="go" type="button">Authorize with Apple Music</button>
+<p id="status"></p>
+<label for="out">Music User Token</label>
+<textarea id="out" readonly spellcheck="false"></textarea>
+<script>
+document.getElementById('go').addEventListener('click', async function () {
+  var status = document.getElementById('status');
+  try {
+    if (!window.MusicKit) throw new Error('MusicKit JS has not loaded yet, wait a second and retry.');
+    await MusicKit.configure({ developerToken: document.getElementById('dev').value.trim(), app: { name: 'pierreantoineroy.com', build: '1.0' } });
+    var token = await MusicKit.getInstance().authorize();
+    document.getElementById('out').value = token;
+    status.className = 'ok'; status.textContent = 'Done. Copy the token below.';
+  } catch (e) {
+    status.className = 'err'; status.textContent = 'Error: ' + (e && e.message ? e.message : e);
+  }
+});
+</script>
+</body></html>

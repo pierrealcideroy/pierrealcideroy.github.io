@@ -354,7 +354,32 @@
       .catch(failed);
   }
 
-  // ---- For the curious ones who open the console ----
+  // ---- On repeat: albums from assets/music.json (written by a GitHub Action from the Apple Music API) ----
+  var albumsEl = $('#albums');
+  if (albumsEl && window.fetch) {
+    fetch('/assets/music.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (data) {
+        var albums = (data.albums || []).slice(0, 6);
+        if (!albums.length) return;
+        albums.forEach(function (al) {
+          var li = document.createElement('li');
+          var box = document.createElement(al.url ? 'a' : 'div');
+          if (al.url) { box.href = al.url; box.target = '_blank'; box.rel = 'noopener'; box.title = 'Listen on Apple Music'; }
+          var img = document.createElement('img');
+          img.src = al.artwork; img.width = 300; img.height = 300; img.loading = 'lazy';
+          img.alt = 'Album cover of ' + al.name + ' by ' + al.artist;
+          var name = document.createElement('p'); name.className = 'album-name'; name.textContent = al.name;
+          var artist = document.createElement('p'); artist.className = 'album-artist'; artist.textContent = al.artist;
+          box.appendChild(img); box.appendChild(name); box.appendChild(artist);
+          li.appendChild(box); albumsEl.appendChild(li);
+        });
+        $('#music').hidden = false;
+      })
+      .catch(function () {}); // no file yet, or offline: the section just stays hidden
+  }
+
+    // ---- For the curious ones who open the console ----
   console.log('%cPA', 'font:700 48px Lato,sans-serif;color:#1c6fb8');
   console.log('Hey, curious one 👋\nThis site is plain HTML, CSS and a little JS, no framework.\nTry ⌘K, or the Konami code. Say hi: hello@pierreantoineroy.com');
 })();

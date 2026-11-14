@@ -154,7 +154,9 @@ blockquote footer{margin-top:14px;color:var(--fg);font-weight:400;font-size:15px
 .card .stores + .links{margin-top:0;padding-top:4px}
 .app-hero .stores + .links{margin-top:16px}
 .soon{font-size:14px;color:var(--muted)}
-.soon::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--soft);margin-right:7px;vertical-align:1px}
+/* "Coming soon" pulses in yellow, same convention as the green "live" dot */
+.soon::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#f2b705;margin-right:7px;vertical-align:1px;box-shadow:0 0 0 0 #f2b70580;animation:ping-soon 2.4s infinite}
+@keyframes ping-soon{70%{box-shadow:0 0 0 7px #f2b70500}100%{box-shadow:0 0 0 0 #f2b70500}}
 .btn.ig:hover{color:#fff;background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);border-color:transparent}
 .btn.ig .handle{color:var(--soft);margin-left:2px}
 .btn.ig:hover .handle{color:#fff}

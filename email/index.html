@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signatures email</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));padding-bottom:40px}
+  .sig{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
+  .sig h3{margin:0;font-size:19px}
+  .sig .meta{margin:0;color:var(--muted);font-weight:300;font-size:15px}
+  .tools{display:flex;flex-wrap:wrap;gap:8px}
+  .tools .btn.on{color:var(--fg);border-color:var(--fg)}
+  /* The preview behaves like a mail window: white page, or a dark one that recolours text the way
+     Apple Mail / Gmail dark modes do (images stay as they are). */
+  .mail{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:22px 20px;overflow:auto;transition:max-width .3s}
+  .mail .body{font:15px/1.5 Arial,sans-serif;color:#222;margin:0 0 18px}
+  .mail.phone{max-width:340px}
+  .mail.dark{background:#1e1e1e}
+  .mail.dark .body{color:#ddd}
+  .mail.dark [style*="color:#2e2e2e"]{color:#ececee!important}
+  .mail.dark [style*="color:#6a6a6a"]{color:#a6a6ae!important}
+  .mail.dark [style*="color:#8f1d3b"]{color:#e5728d!important}
+  .mail.dark [style*="color:#1c6fb8"]{color:#7fb2ff!important}
+  .mail.dark [style*="border-left:1px solid #dcdcdc"]{border-left-color:#3a3c45!important}
+  .mail.dark [style*="border-bottom:1px solid #dcdcdc"]{border-bottom-color:#3a3c45!important}
+  .mail.dark [bgcolor="#f7f7f5"]{background:#25272f!important;border-color:#3a3c45!important}
+  .mail.nodisc [data-disclaimer]{display:none}
+  .help{max-width:72ch;padding-bottom:64px}
+  .help h3{font-size:17px;margin:22px 0 6px}
+  .help p,.help li{color:var(--muted);font-weight:300}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--toast);color:var(--toast-fg);padding:10px 16px;border-radius:999px;font-size:15px;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="mark" href="/" aria-label="Accueil"><img src="/favicon.svg" width="34" height="34" alt="PA"></a></header>
+
+<h2 class="label"><span><span class="slash">//</span>Signatures email</span></h2>
+<p class="muted">Quatre propositions, construites comme un email (tableaux, styles en ligne, images PNG en 2x hébergées sur le site) pour s'afficher pareil dans Gmail, Apple Mail, Outlook (Windows, Mac, web) et sur téléphone. Prévisualise en mode sombre et en largeur téléphone, puis copie celle que tu préfères.</p>
+<p class="tools" style="margin:0 0 24px">
+  <button class="btn" id="all-dark">Tout en sombre</button>
+  <button class="btn" id="all-phone">Tout en largeur téléphone</button>
+  <button class="btn" id="all-disc">Disclaimer : affiché</button>
+</p>
+
+<div class="grid" id="grid"></div>
+
+<section class="help">
+  <h2 class="label"><span><span class="slash">//</span>Installer</span></h2>
+  <p>« Copier pour Gmail / Apple Mail » met la signature mise en forme dans le presse-papiers. Les images viennent de <span class="mono">pierreantoineroy.com/assets/email/</span> : elles doivent être en ligne avant l'installation.</p>
+  <h3>Gmail (web)</h3>
+  <p>Paramètres › Voir tous les paramètres › Général › Signature › Créer › coller (⌘V) › Enregistrer en bas de la page. Sur l'app Gmail mobile, la signature web est reprise.</p>
+  <h3>Apple Mail (Mac)</h3>
+  <p>Réglages › Signatures › + › décocher « Toujours utiliser ma police par défaut » › coller. Les images peuvent n'apparaître qu'à l'envoi.</p>
+  <h3>iPhone (Mail)</h3>
+  <p>Réglages › Apps › Mail › Signature : le collage garde peu de mise en forme. Le plus fiable : s'envoyer la signature par email depuis le Mac, puis copier-coller depuis le message reçu.</p>
+  <h3>Outlook</h3>
+  <p>Paramètres › Courrier › Rédiger et répondre (web) ou Préférences › Signatures (Mac), puis coller. Outlook Windows ignore les coins arrondis : ils sont déjà dans les images.</p>
+</section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SIGS = [
+  {file:'signature-1.html', name:'1 · Manuscrite', note:'Le logo PA signe en premier, comme une signature à la main. Lien texte vers Spiller!.'},
+  {file:'signature-2.html', name:'2 · Carte', note:'Photo et logo à gauche, filet vertical, réseaux, badge officiel App Store dessous.'},
+  {file:'signature-3.html', name:'3 · Compacte', note:'Pour les réponses : tient en 300 px, une ligne Spiller!.'},
+  {file:'signature-4.html', name:'4 · Site', note:'Titre de section « // » du site et carte Spiller! façon « Now », avec le badge.'}
+];
+const ABS = 'https://pierreantoineroy.com/assets/email/';
+// While the images are not online yet, the preview reads them from this folder.
+const local = !/pierreantoineroy\.com$/.test(location.hostname);
+const show = h => local ? h.split(ABS).join('/assets/email/') : h;
+const clean = (h, withDisc) => {
+  const d = document.createElement('div'); d.innerHTML = h;
+  if (!withDisc) d.querySelectorAll('[data-disclaimer]').forEach(n => n.remove());
+  d.querySelectorAll('[data-disclaimer]').forEach(n => n.removeAttribute('data-disclaimer'));
+  return d.innerHTML.replace(/<!--[\s\S]*?-->/g, '').replace(/\n\s*/g, '').trim();
+};
+const toast = t => { const e = document.getElementById('toast'); e.textContent = t; e.classList.add('show'); setTimeout(() => e.classList.remove('show'), 1800) };
+let disc = true;
+
+Promise.all(SIGS.map(s => fetch(s.file).then(r => r.text()))).then(texts => {
+  const grid = document.getElementById('grid');
+  texts.forEach((raw, i) => {
+    const s = SIGS[i];
+    const card = document.createElement('article'); card.className = 'sig';
+    card.innerHTML = `<h3>${s.name}</h3><p class="meta">${s.note}</p>
+      <div class="tools"><button class="btn" data-t="dark">Sombre</button><button class="btn" data-t="phone">Téléphone</button></div>
+      <div class="mail"><p class="body">Merci, à bientôt !</p>${show(raw)}</div>
+      <div class="tools"><button class="btn" data-c="rich">Copier pour Gmail / Apple Mail</button><button class="btn" data-c="code">Copier le code HTML</button></div>`;
+    const mail = card.querySelector('.mail');
+    card.querySelectorAll('[data-t]').forEach(b => b.onclick = () => b.classList.toggle('on', mail.classList.toggle(b.dataset.t)));
+    card.querySelector('[data-c=rich]').onclick = async () => {
+      const html = clean(raw, disc);
+      await navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'}), 'text/plain': new Blob([mail.querySelector('table').innerText], {type:'text/plain'})})]);
+      toast('Signature copiée');
+    };
+    card.querySelector('[data-c=code]').onclick = async () => { await navigator.clipboard.writeText(clean(raw, disc)); toast('Code HTML copié') };
+    grid.append(card);
+  });
+});
+const all = (id, cls) => { const b = document.getElementById(id); b.onclick = () => { const on = !b.classList.contains('on'); b.classList.toggle('on', on);
+  document.querySelectorAll('.sig').forEach(c => { c.querySelector('.mail').classList.toggle(cls, on); c.querySelector(`[data-t=${cls}]`).classList.toggle('on', on) }) } };
+all('all-dark', 'dark'); all('all-phone', 'phone');
+document.getElementById('all-disc').onclick = e => { disc = !disc; e.target.textContent = 'Disclaimer : ' + (disc ? 'affiché' : 'masqué');
+  document.querySelectorAll('.mail').forEach(m => m.classList.toggle('nodisc', !disc)) };
+</script>
+</body></html>

@@ -2,9 +2,10 @@ import AppKit
 import WebKit
 let dir = URL(fileURLWithPath: CommandLine.arguments[1])
 let out = CommandLine.arguments[2]
+// Read access goes to the repo root, so the page can load assets/pa.jpg.
 final class Shot: NSObject, WKNavigationDelegate {
   let wv = WKWebView(frame: NSRect(x: 0, y: 0, width: 1200, height: 630))
-  func start() { wv.navigationDelegate = self; wv.loadFileURL(dir.appendingPathComponent("og.html"), allowingReadAccessTo: dir) }
+  func start() { wv.navigationDelegate = self; wv.loadFileURL(dir.appendingPathComponent("og.html"), allowingReadAccessTo: dir.deletingLastPathComponent().deletingLastPathComponent()) }
   func webView(_ w: WKWebView, didFinish n: WKNavigation!) {
     DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
       let c = WKSnapshotConfiguration(); c.rect = CGRect(x: 0, y: 0, width: 1200, height: 630); c.snapshotWidth = 1200

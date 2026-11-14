@@ -18,8 +18,8 @@ Personal site of Pierre-Antoine Roy, served by GitHub Pages (domain in `CNAME`).
 
 The JSON-LD block in the `<head>` of `index.html` describes me for search engines: keep it in sync with the page.
 
-Share image of the home page: `assets/og.jpg`, made from `tools/og/og.html`. To redo it, edit the HTML, then run `swift tools/og/snap.swift tools/og assets/og.png` and convert to JPG.
+Share image of the home page: `assets/og.jpg`, made from `tools/og/og.html`. To redo it, edit the HTML, then run `swift tools/og/snap.swift "$PWD/tools/og" og.png` (it renders at 2x), and `sips -z 630 1200 og.png` before saving it as `assets/og.jpg`.
 
-Drafts to rewrite are marked `DRAFT` in `index.html`. The hidden `#writing` section is ready for the future Substack feed.
+The hidden `#writing` section is ready for the future Substack feed.
 
 Edit, commit, push to `main`: the site updates in about a minute.

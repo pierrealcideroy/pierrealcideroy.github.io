@@ -1,23 +1,24 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pierre-Antoine Roy — Creating Content at AppTweak</title>
+<meta name="description" content="Pierre-Antoine Roy creates content at AppTweak and makes games after hours. Product, growth and content, with a geek streak.">
+<link rel="canonical" href="https://pierreantoineroy.com/">
+<meta property="og:type" content="profile"><meta property="og:url" content="https://pierreantoineroy.com/">
+<meta property="og:title" content="Pierre-Antoine Roy — Creating Content at AppTweak">
+<meta property="og:description" content="Content at AppTweak by day, games after hours.">
+<meta property="og:image" content="https://pierreantoineroy.com/assets/pa.jpg"><meta name="twitter:card" content="summary">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Pierre-Antoine Roy</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script>
-// Intro: only when JavaScript runs and the visitor has not asked for reduced motion.
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
+// Before anything paints: the theme the visitor picked, and the intro unless they asked for reduced motion.
+try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro');
 </script>
-<style>
-:root{--fg:#222;--bg:#fff;--logo:#191919}
-@media(prefers-color-scheme:dark){:root{--fg:#ddd;--bg:#16171d;--logo:#fff}a{color:#8ab4ff}}
-body{font:16px/1.6 system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1rem;color:var(--fg);background:var(--bg)}
-#intro{display:none}
-.intro #intro{display:flex;position:fixed;inset:0;z-index:10;align-items:center;justify-content:center;background:var(--bg);cursor:pointer;transition:opacity .5s ease-out}
-.intro #intro.out{opacity:0;pointer-events:none}
-#intro svg{width:min(42vmin,260px);height:auto;overflow:visible}
-#intro path{fill:none;stroke:var(--logo);stroke-width:32.2484;stroke-linecap:round;stroke-linejoin:round;opacity:0}
-</style></head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
 <body>
 <div id="intro" aria-hidden="true">
 <!-- PA logo, drawn in the hand's order: each piece is one pass of the pen (same strokes as the Spiller launch logo). -->
@@ -30,46 +31,190 @@ body{font:16px/1.6 system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding
 <path d="M367.325 341.937C363.753 297.205 348.122 235 288.869 252.316"/>
 </svg>
 </div>
-<h1>Pierre-Antoine Roy</h1>
-<p>Independent game developer.</p>
-<ul><li><a href="/spiller/privacy/">Spiller: privacy policy</a></li></ul>
-<p>Contact: <a href="mailto:hello@pierreantoineroy.com">hello@pierreantoineroy.com</a></p>
-<script>
-(function () {
-  var intro = document.getElementById('intro');
-  if (!document.documentElement.classList.contains('intro')) { intro.remove(); return; }
-  var WRITE = 2000, HOLD = 300, FADE = 500; // ms, same timings as the app
-  var paths = [].slice.call(intro.querySelectorAll('path'));
-  var lens = paths.map(function (p) { return p.getTotalLength(); });
-  var total = lens.reduce(function (a, b) { return a + b; }, 0);
-  var start = null, done = false;
-  function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; } // ease in-out
-  function draw(p) { // p = 0..1 of the whole pen trip
-    var ink = p * total;
-    paths.forEach(function (path, i) {
-      var d = Math.max(0, Math.min(lens[i], ink));
-      ink -= lens[i];
-      path.style.opacity = d > 0 ? 1 : 0;
-      path.style.strokeDasharray = d + ' ' + (lens[i] + 1);
-    });
-  }
-  function finish() {
-    if (done) return; done = true;
-    draw(1);
-    intro.classList.add('out');
-    setTimeout(function () { intro.remove(); document.documentElement.classList.remove('intro'); }, FADE + 50);
-  }
-  function frame(now) {
-    if (done) return;
-    if (start === null) start = now;
-    var t = now - start;
-    draw(ease(Math.min(1, t / WRITE)));
-    if (t >= WRITE + HOLD) finish(); else requestAnimationFrame(frame);
-  }
-  intro.addEventListener('click', finish);
-  addEventListener('keydown', finish, { once: true });
-  draw(0);
-  requestAnimationFrame(frame);
-})();
-</script>
+
+<div class="wrap">
+<header class="top">
+  <a class="mark" href="/" aria-label="Home"><svg viewBox="70 80 340 340" fill="none" aria-hidden="true"><g stroke-width="40" stroke-linecap="round" stroke-linejoin="round"><path d="M112.083 176.337C112.681 191.601 116.037 206.991 117.622 222.153C119.995 244.846 121.692 267.597 123.318 290.36C123.993 299.814 124.656 309.27 125.35 318.725C127.076 342.252 132.243 412.835 130.478 389.311C128.214 359.123 125.62 329.081 123.777 298.818C123.605 295.997 123.453 293.178 123.318 290.36C122.304 269.214 122.226 248.128 121.657 226.94C121.059 204.666 119.908 182.466 121.931 160.229C124.1 136.379 131.925 99.8128 160.362 104.459C174.673 106.798 189.558 119.615 199.273 130.825C215.574 149.633 224.461 173.142 228.131 198.675C230.491 215.104 229.765 234.177 217.121 245.48C204.526 256.738 187.989 255.682 173.013 252.774C160.379 250.321 147.799 246.721 135.334 243.352C131.087 242.204 128.148 241.046 131.778 246.087"/><path d="M273.422 204.593C271.032 260.279 273.562 316.203 269.499 371.838C269.282 374.809 265.996 384.643 269.499 387.459C270.944 388.62 274.246 381.458 274.28 381.296C277.231 367.153 274.946 351.919 275.629 337.658C278.645 274.63 286.466 211.846 300.394 149.275C303.863 133.686 314.631 94.6581 333.005 106.138C338.636 109.656 341.833 115.647 344.039 120.039C352.406 136.697 355.269 154.499 358.138 171.703C367.512 227.92 368.621 285.198 367.325 341.937C367.05 353.988 366.666 366.014 366.229 378C366.067 382.471 366.425 387.014 365.616 391.471C365.464 392.308 363.928 394.446 365.126 393.979C368.199 392.782 367.747 382.379 367.823 381.296C368.237 375.39 368.775 360.105 367.325 341.937C363.753 297.205 348.122 235 288.869 252.316"/></g></svg></a>
+  <nav>
+    <button class="btn" id="theme" type="button" aria-label="Switch theme"><span aria-hidden="true">◐</span><span class="sr">Theme</span></button>
+    <button class="btn" id="open-palette" type="button" aria-label="Open the command palette"><kbd>⌘K</kbd></button>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <img class="photo" src="/assets/pa.jpg" width="120" height="120" alt="Pierre-Antoine Roy" title="Say cheese">
+  <h1>Pierre-Antoine Roy <span class="dash">—</span><br class="wide"> Creating Content at AppTweak<span class="caret" aria-hidden="true"></span></h1>
+  <!-- DRAFT: description to rewrite in PA's own voice. -->
+  <p class="lede">I'm a <strong>geek since birth</strong> who loves turning complicated things into clear ones. By day, I write about app marketing at <strong>AppTweak</strong>. After hours, I make games: <strong>Spiller!</strong>, my first one, is out on iPhone. I've worn product design, growth and marketing hats, I speak French, English and Spanish, and I still believe the best work comes from building with people, with clear plans and solutions built to last.</p>
+  <div class="links">
+    <a class="btn" href="https://www.linkedin.com/in/pierre-antoine-roy" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a class="btn" href="mailto:hello@pierreantoineroy.com" data-copy="hello@pierreantoineroy.com">hello@pierreantoineroy.com</a>
+  </div>
+</section>
+
+<section class="now" id="now">
+  <h2 class="label"><span><span class="slash">//</span>Now</span></h2>
+  <div class="cards">
+    <article class="card" data-now="AppTweak">
+      <div class="meta"><span class="dot" aria-hidden="true"></span>Full Time | Since Mar 2026</div>
+      <h3>Creating Content <a href="https://www.apptweak.com" target="_blank" rel="noopener">@AppTweak</a></h3>
+      <p>Data-driven content on App Store Optimization, app marketing and mobile growth, from the blog to LinkedIn, newsletters and video.</p>
+      <!-- DRAFT (PA not sure it stays): the content automation system. Delete this <p> to remove it. -->
+      <p data-draft>I built a <strong>numbers-first automation system for social media</strong>: post performance comes straight from the LinkedIn API, research and drafts start from it, so the team can spend its time on creativity instead of data digging.</p>
+      <div class="links"><a class="btn" href="https://www.apptweak.com" target="_blank" rel="noopener">apptweak.com ↗</a></div>
+    </article>
+    <article class="card" data-now="Spiller!">
+      <div class="row">
+        <img class="icon" src="/assets/spiller-icon.png" width="64" height="64" alt="Spiller! app icon">
+        <div><div class="meta">Side project | Indie game</div><h3>Spiller!</h3></div>
+      </div>
+      <p>A one-tap mobile game: hold to pour, release right on the line. Designed and built by me in Unity, from the first prototype to the App Store.</p>
+      <div class="links">
+        <a class="btn" href="https://apps.apple.com/app/id6828435267" target="_blank" rel="noopener">App Store ↗</a>
+        <a class="btn" href="https://www.instagram.com/spiller_game/" target="_blank" rel="noopener">@spiller_game ↗</a>
+        <span class="btn" title="Closed test running">Android soon</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Writing: hidden until the Substack goes live. Later, a GitHub Action can read its RSS feed daily and fill this list. -->
+<section class="now" id="writing" hidden>
+  <h2 class="label"><span><span class="slash">//</span>Writing</span></h2>
+  <ul class="list" id="posts"></ul>
+</section>
+
+<div class="cv">
+  <section id="experience">
+    <h2 class="label"><span><span class="slash">//</span>Experience</span> <button class="btn" type="button" data-json>{ } View as JSON</button></h2>
+
+    <article class="job">
+      <div class="meta">Full Time | Mar 2026 - Present</div>
+      <h3>Creating Content <span class="at">@AppTweak</span></h3>
+      <p>I help strengthen AppTweak's authority in the app marketing industry by producing data-driven content and scaling content production across channels.</p>
+      <details><summary><span class="arrow">›</span>8 highlights</summary><ul class="ups">
+        <li><strong>Produce editorial content on ASO, app marketing and mobile growth</strong>, with product, data science and growth experts, turning complex insights into accessible thought leadership.</li>
+        <li><strong>Manage the blog editorial workflow</strong>: editing AI-assisted drafts, keeping them in line with AppTweak's editorial guidelines, and optimizing them for SEO and Answer Engine Optimization (AEO).</li>
+        <li><strong>Run industry research</strong> and pull insights from the AppTweak platform for blog posts, social media and marketing, while tracking market trends and competitors to spot new content opportunities.</li>
+        <li><strong>Lead LinkedIn content planning</strong>, turning blog insights, product launches, webinars and industry news into posts that strengthen AppTweak's presence in the app marketing ecosystem.</li>
+        <li><strong>Repurpose long-form content</strong> into social posts, newsletters and short-form content to extend the reach and lifespan of key initiatives.</li>
+        <li><strong>Experiment with AI-assisted content workflows</strong> to scale production and improve research and drafting, while keeping editorial standards high.</li>
+        <li><strong>Collaborate across product, marketing and growth</strong>, translating technical platform insights into clear, educational content for app developers and marketers.</li>
+        <li><strong>Contribute to new formats</strong> such as video: writing scripts and turning webinars and articles into short-form videos and YouTube material.</li>
+      </ul></details>
+    </article>
+
+    <article class="job">
+      <div class="meta">Full Time | Jun 2023 - Dec 2025</div>
+      <h3>Growth Consultant <span class="at">@LiLiCAST</span></h3>
+      <p>Alongside my Marketing Consultant role at 26lights, I spent three days a week with LiLiCAST as a Growth Consultant.</p>
+      <details><summary><span class="arrow">›</span>7 highlights</summary><ul class="ups">
+        <li><strong>Rebuilt the whole marketing website from scratch</strong>, replacing a buggy, low-quality WordPress and Elementor site. Loading time was divided by 3, boosting domain authority.</li>
+        <li><strong>Managed key accounts</strong> for the company's growth, such as Maia Consulting, Vivium, BeoBank, P&amp;V, Gadot Belgium, Daoust and Keytrade Bank.</li>
+        <li><strong>Ran all customer support</strong>, answering the tickets customers sent through an in-app chatbot.</li>
+        <li><strong>Envisioned and led marketing initiatives</strong>, such as content marketing for social media.</li>
+        <li><strong>Took part in product management workshops</strong> to redefine LiLiCAST's value from the problems users raised in support.</li>
+        <li><strong>Prototyped new features in Figma</strong>, significantly reducing product decision times.</li>
+        <li><strong>Led growth hacking initiatives</strong> to find prospects by criteria such as the technologies on their websites, with web scraping, PhantomBuster and Clay.</li>
+      </ul></details>
+    </article>
+
+    <article class="job">
+      <div class="meta">Full Time | Jun 2023 - Dec 2025</div>
+      <h3>Marketing Consultant <span class="at">@26lights</span></h3>
+      <p>A 6-month internship that became a full-time role, strengthening 26lights' position as an incubator for startups, scale-ups and SMEs through digital experiences and growth initiatives.</p>
+      <details><summary><span class="arrow">›</span>4 highlights</summary><ul class="ups">
+        <li><strong>Led SEO for 26lights and its clients</strong>, with continuous organic and technical optimization. Corset Daum's domain authority went from 20 to 50 in a single year, ranking its content on non-specific low back pain at the top of Google for its target queries.</li>
+        <li><strong>Led website and app redesigns in Figma</strong>, advocating product design best practices to the creative director and clients, for companies such as Ethik.IA and Leexi.</li>
+        <li><strong>Prototyped improvements for the internal app My26</strong>, turning feedback from consultants who use it daily into features developers could easily build.</li>
+        <li><strong>Built and ran the editorial calendar</strong>: long-form posts, videos, executive notes and campaign assets for "Expert Advice", "News 26" and events. The LinkedIn page grew from 300 to 1.5k followers in two years.</li>
+      </ul></details>
+    </article>
+
+    <article class="job">
+      <div class="meta">Freelance Mission | Nov 2022 - May 2023</div>
+      <h3>Content Creator <span class="at">@Lizy</span></h3>
+      <p>I led Lizy's content on electric vehicle leasing: a long-form ebook and companion articles on EV economics, upcoming Belgian tax changes and sustainability for SMEs, structured for SEO and conversion. I also helped their engineering team shape a secure testing environment, and ran the project from a dedicated Notion hub.</p>
+    </article>
+
+    <article class="job">
+      <div class="meta">Freelance Mission | Jan 2023 - Apr 2023</div>
+      <h3>Web Content Manager <span class="at">@Huble (formerly Digitag)</span></h3>
+      <p>I led an end-to-end localization of the website from English to French, keeping the company's friendly, slangy tone, in a single Notion database the client could follow in real time.</p>
+      <details><summary><span class="arrow">›</span>3 highlights</summary><ul class="ups">
+        <li><strong>Focused on UX writing</strong>: consistent tone, clear calls to action and low-friction forms on key pages.</li>
+        <li><strong>Documented site structure and naming issues</strong>, proposing on-page fixes for information architecture and future SEO.</li>
+        <li><strong>Edited and localized case studies</strong> with a clear challenge → approach → results structure.</li>
+      </ul></details>
+    </article>
+
+    <article class="job">
+      <div class="meta">Venture | Sep 2022 - Mar 2023</div>
+      <h3>Founding Partner and Knowledge Manager <span class="at">@WeProduct</span></h3>
+      <p>A product management best-practices knowledge base built with Notion and Super, with Benjamin Ayache (ex-PSA, Dassault Systèmes).</p>
+      <details><summary><span class="arrow">›</span>3 highlights</summary><ul class="ups">
+        <li><strong>Summarized books</strong> with the approval of their authors and publishers.</li>
+        <li><strong>Created product management Notion templates</strong> for workshop facilitation and productivity.</li>
+        <li><strong>Created and managed Design Sprint processes</strong> inside a paywalled Notion workspace.</li>
+      </ul></details>
+    </article>
+
+    <article class="job">
+      <div class="meta">Internship | Feb 2022 - Sept 2022</div>
+      <h3>Content Marketer <span class="at">@dualoop</span></h3>
+      <details><summary><span class="arrow">›</span>4 highlights</summary><ul class="ups">
+        <li><strong>Led cross-functional work with a small marketing team</strong> to align messaging with dualoop's positioning, for a clearer market narrative across web and social.</li>
+        <li><strong>Managed the LinkedIn presence end-to-end</strong>, from calendar and copywriting to publishing and community: more than a thousand new followers in 9 months.</li>
+        <li><strong>Created a "consultant advocacy" workflow</strong> that turned experts' insights into publishable stories, a repeatable ghostwriting process.</li>
+        <li><strong>Led the multi-channel strategy</strong> from KPIs, prioritizing high-leverage formats for better reach and engagement.</li>
+      </ul></details>
+    </article>
+  </section>
+
+  <aside class="side">
+    <section id="skills">
+      <h2 class="label"><span><span class="slash">//</span>Skills</span></h2>
+      <ul class="list">
+        <li>Content Strategy</li><li>SEO / AEO</li><li>Workshop Facilitation</li><li>Usability Testing</li><li>Agile / Cross-Functional Collaboration</li>
+        <li>User Research</li><li>Growth Hacking</li><li>QA Testing</li><li>Web Design</li><li>Mobile App Design</li><li>Game Design</li>
+      </ul>
+    </section>
+    <section id="tools">
+      <h2 class="label"><span><span class="slash">//</span>Tech Expertise</span></h2>
+      <ul class="chips">
+        <li>Figma</li><li>Penpot</li><li>Webflow</li><li>WordPress</li><li>Elementor Pro</li><li>Framer</li><li>Web Scraping (regex, XPath)</li>
+        <li>HTML / CSS / SCSS</li><li>JavaScript</li><li>Unity</li><li>C#</li><li>Claude Code</li><li>VS Code</li><li>Notion</li><li>GitHub</li><li>GitLab</li>
+        <li>Jira</li><li>Confluence</li><li>Make</li>
+      </ul>
+    </section>
+    <section id="qualifications">
+      <h2 class="label"><span><span class="slash">//</span>Qualifications</span></h2>
+      <h4>Bachelor of Foreign Applied Languages @Université de Tours</h4>
+      <p>English and Spanish to a professional level, with advanced courses in European law and international relations.</p>
+      <h4>Notion Certifications</h4>
+      <p>Earned through Notion's Ambassador programs since 2022.</p>
+      <ul class="ups"><li>Notion Essentials Badge</li><li>Notion Workflows Badge</li><li>Notion Advanced Badge</li></ul>
+    </section>
+    <section id="references">
+      <h2 class="label"><span><span class="slash">//</span>References</span></h2>
+      <blockquote>"Working with Pierre-Antoine is an absolute pleasure. He combines enthusiasm, availability, and genuine dedication to making sure every need is met. Always open to feedback, he adapts quickly and effectively. He perfectly bridges between our requirements and product development, keeping us informed and aligned at every step. Beyond his professionalism, he's a truly enjoyable person to collaborate with. A real asset to any team."
+        <footer>Sandra Villani, Operations Manager @Maia Consulting</footer></blockquote>
+    </section>
+  </aside>
+</div>
+</main>
+
+<footer class="foot">
+  <nav>
+    <a href="mailto:hello@pierreantoineroy.com" data-copy="hello@pierreantoineroy.com">hello@pierreantoineroy.com</a>
+    <a href="https://www.linkedin.com/in/pierre-antoine-roy" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="/spiller/privacy/">Spiller privacy policy</a>
+  </nav>
+  <span class="mono" id="deployed">Press <kbd>⌘K</kbd> for shortcuts</span>
+</footer>
+</div>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/intro.js" defer></script>
 </body></html>

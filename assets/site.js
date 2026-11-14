@@ -1,0 +1,190 @@
+// pierreantoineroy.com: the small developer quirks. No framework, nothing to build.
+(function () {
+  var root = document.documentElement;
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var $$ = function (s, el) { return [].slice.call((el || document).querySelectorAll(s)); };
+
+  // ---- Toast ----
+  var toastEl = document.createElement('div');
+  toastEl.className = 'toast'; toastEl.setAttribute('role', 'status');
+  document.body.appendChild(toastEl);
+  var toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg; toastEl.classList.add('on');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, 2200);
+  }
+
+  // ---- Email: first click copies, a second click within 3 s opens the mail app ----
+  var armed = null;
+  function copyEmail(text) {
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { toast('Copied ✓  click again to open mail'); }, function () { location.href = 'mailto:' + text; });
+    else location.href = 'mailto:' + text;
+  }
+  $$('[data-copy]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (armed === a) return; // second click: let the mailto link open
+      e.preventDefault(); armed = a; setTimeout(function () { if (armed === a) armed = null; }, 3000);
+      copyEmail(a.dataset.copy);
+    });
+  });
+
+  // ---- Theme: follows the system until the visitor picks one ----
+  function currentTheme() { return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+  function toggleTheme() {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    toast(next === 'dark' ? 'Lights off' : 'Lights on');
+  }
+  var themeBtn = $('#theme'); if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+
+  // ---- Photo: black and white like the CV, colour on hover or tap ----
+  var photo = $('.photo'); if (photo) photo.addEventListener('click', function () { photo.classList.toggle('color'); });
+
+  // ---- Resume as JSON, read from the page itself (one source of truth) ----
+  function text(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : undefined; }
+  function resume() {
+    var h1 = $('h1');
+    return {
+      name: 'Pierre-Antoine Roy',
+      headline: h1 ? text(h1).split('—').slice(1).join('—').trim() : undefined,
+      about: text($('.lede')),
+      contact: { email: 'hello@pierreantoineroy.com', linkedin: 'https://www.linkedin.com/in/pierre-antoine-roy', website: 'https://pierreantoineroy.com' },
+      now: $$('[data-now]').map(function (c) { return { project: c.dataset.now, status: text($('.meta', c)) }; }),
+      experience: $$('.job').map(function (j) {
+        var meta = text($('.meta', j)).split('|');
+        var h3 = $('h3', j).cloneNode(true), at = $('.at', h3), company = at ? at.textContent.replace(/^@/, '').trim() : undefined;
+        if (at) at.remove();
+        var p = $(':scope > p', j);
+        return { role: text(h3), company: company, type: meta[0].trim(), dates: (meta[1] || '').trim(),
+                 summary: p ? text(p) : undefined, highlights: $$('.ups li', j).map(text) };
+      }),
+      skills: $$('#skills li').map(text),
+      tools: $$('#tools li').map(text),
+      education: $$('#qualifications h4').map(function (h) { return { title: text(h), details: text(h.nextElementSibling) }; }),
+      languages: ['French', 'English', 'Spanish']
+    };
+  }
+  function highlight(json) {
+    return json.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/("(?:\\.|[^"\\])*")(\s*:)?/g, function (m, s, colon) { return colon ? '<span class="k">' + s + '</span><span class="p">:</span>' : '<span class="s">' + s + '</span>'; })
+      .replace(/([{}\[\],])/g, '<span class="p">$1</span>');
+  }
+  var jsonDlg;
+  function showJson() {
+    if (!jsonDlg) {
+      jsonDlg = document.createElement('dialog'); jsonDlg.className = 'json';
+      jsonDlg.innerHTML = '<header><span>resume.json</span><span><button class="btn" type="button" data-act="copy">Copy</button> <button class="btn" type="button" data-act="close" aria-label="Close">✕</button></span></header><pre></pre>';
+      jsonDlg.addEventListener('click', function (e) {
+        var act = e.target.closest('[data-act]');
+        if (e.target === jsonDlg || (act && act.dataset.act === 'close')) jsonDlg.close();
+        if (act && act.dataset.act === 'copy') navigator.clipboard.writeText(JSON.stringify(resume(), null, 2)).then(function () { toast('resume.json copied ✓'); });
+      });
+      document.body.appendChild(jsonDlg);
+    }
+    $('pre', jsonDlg).innerHTML = highlight(JSON.stringify(resume(), null, 2));
+    jsonDlg.showModal();
+  }
+  $$('[data-json]').forEach(function (b) { b.addEventListener('click', showJson); });
+
+  // ---- Konami code (or the "pour" command): the screen fills like a glass ----
+  var pouring = false;
+  function pour() {
+    if (pouring || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    pouring = true;
+    var box = document.createElement('div'); box.className = 'pour';
+    box.innerHTML = '<div class="liquid"></div><div class="word">Perfect!</div>';
+    document.body.appendChild(box);
+    var liquid = $('.liquid', box), word = $('.word', box);
+    liquid.animate([{ transform: 'translateY(100%)' }, { transform: 'translateY(10%)' }], { duration: 1500, easing: 'cubic-bezier(.45,0,.55,1)', fill: 'forwards' }).finished.then(function () {
+      word.animate([{ opacity: 0, transform: 'scale(.8)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 300, easing: 'cubic-bezier(.3,1.6,.5,1)', fill: 'forwards' });
+      return new Promise(function (r) { setTimeout(r, 900); });
+    }).then(function () {
+      word.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: 'forwards' });
+      return liquid.animate([{ transform: 'translateY(10%)' }, { transform: 'translateY(100%)' }], { duration: 900, easing: 'cubic-bezier(.55,0,1,.45)', fill: 'forwards' }).finished;
+    }).then(function () { box.remove(); pouring = false; toast('You would be good at Spiller!'); });
+  }
+  var konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'], kpos = 0;
+  addEventListener('keydown', function (e) {
+    var k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    kpos = k === konami[kpos] ? kpos + 1 : (k === konami[0] ? 1 : 0);
+    if (kpos === konami.length) { kpos = 0; pour(); }
+  });
+
+  // ---- Command palette: ⌘K / Ctrl+K or "/" ----
+  function go(id) { return function () { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }; }
+  function open(url) { return function () { window.open(url, '_blank', 'noopener'); }; }
+  var commands = [
+    { name: 'now', hint: 'what I am up to', run: go('now') },
+    { name: 'experience', hint: 'the CV part', run: go('experience') },
+    { name: 'skills', hint: 'skills and tools', run: go('skills') },
+    { name: 'apptweak', hint: 'apptweak.com ↗', run: open('https://www.apptweak.com') },
+    { name: 'spiller', hint: 'my game on the App Store ↗', run: open('https://apps.apple.com/app/id6828435267') },
+    { name: 'linkedin', hint: 'say hi ↗', run: open('https://www.linkedin.com/in/pierre-antoine-roy') },
+    { name: 'email', hint: 'copy my address', run: function () { copyEmail('hello@pierreantoineroy.com'); } },
+    { name: 'json', hint: 'my resume as JSON', run: showJson },
+    { name: 'theme', hint: 'lights on / off', run: toggleTheme },
+    { name: 'source', hint: 'this site on GitHub ↗', run: open('https://github.com/pierrealcideroy/pierrealcideroy.github.io') },
+    { name: 'pour', hint: 'try it', run: function () { setTimeout(pour, 150); } },
+    { name: 'top', hint: 'back to the top', run: function () { scrollTo({ top: 0, behavior: 'smooth' }); } }
+  ];
+  var pal, input, list, shown = [], sel = 0;
+  function render() {
+    var q = input.value.trim().toLowerCase();
+    shown = commands.filter(function (c) { return !q || c.name.indexOf(q) >= 0 || c.hint.toLowerCase().indexOf(q) >= 0; });
+    sel = Math.min(sel, Math.max(0, shown.length - 1));
+    list.innerHTML = shown.length ? '' : '<li aria-disabled="true"><small>command not found: ' + q.replace(/</g, '&lt;') + '</small></li>';
+    shown.forEach(function (c, i) {
+      var li = document.createElement('li');
+      li.setAttribute('role', 'option'); li.setAttribute('aria-selected', i === sel);
+      li.innerHTML = '<span>' + c.name + '</span><small>' + c.hint + '</small>';
+      li.addEventListener('mousemove', function () { if (sel !== i) { sel = i; render(); } });
+      li.addEventListener('click', function () { run(i); });
+      list.appendChild(li);
+    });
+  }
+  function run(i) { var c = shown[i]; if (!c) return; pal.close(); c.run(); }
+  function openPalette() {
+    if (!pal) {
+      pal = document.createElement('dialog'); pal.className = 'palette'; pal.setAttribute('aria-label', 'Command palette');
+      pal.innerHTML = '<input type="text" placeholder="> type a command…" aria-label="Command" autocomplete="off" spellcheck="false"><ul role="listbox"></ul><div class="hint">↑↓ to move · enter to run · esc to close</div>';
+      document.body.appendChild(pal);
+      input = $('input', pal); list = $('ul', pal);
+      input.addEventListener('input', function () { sel = 0; render(); });
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % Math.max(1, shown.length); render(); }
+        if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + shown.length) % Math.max(1, shown.length); render(); }
+        if (e.key === 'Enter') { e.preventDefault(); run(sel); }
+      });
+      pal.addEventListener('click', function (e) { if (e.target === pal) pal.close(); });
+    }
+    if (pal.open) { pal.close(); return; }
+    input.value = ''; sel = 0; render(); pal.showModal(); input.focus();
+  }
+  var palBtn = $('#open-palette'); if (palBtn) palBtn.addEventListener('click', openPalette);
+  addEventListener('keydown', function (e) {
+    var typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPalette(); }
+    else if (e.key === '/' && !typing && !(pal && pal.open)) { e.preventDefault(); openPalette(); }
+  });
+  if (palBtn && !/Mac|iPhone|iPad/.test(navigator.platform)) $('kbd', palBtn).textContent = 'Ctrl K';
+
+  // ---- Footer: last deploy, read from GitHub ----
+  var dep = $('#deployed');
+  if (dep && window.fetch) {
+    fetch('https://api.github.com/repos/pierrealcideroy/pierrealcideroy.github.io/commits?per_page=1')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (c) {
+        c = c[0]; var when = new Date(c.commit.committer.date), s = (Date.now() - when) / 1000;
+        var rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' }), ago;
+        if (s < 3600) ago = rtf.format(-Math.max(1, Math.round(s / 60)), 'minute');
+        else if (s < 86400) ago = rtf.format(-Math.round(s / 3600), 'hour');
+        else ago = rtf.format(-Math.round(s / 86400), 'day');
+        dep.innerHTML = 'deployed ' + ago + ' · <a href="' + c.html_url + '" target="_blank" rel="noopener">' + c.sha.slice(0, 7) + '</a> · <kbd>' + (palBtn ? $('kbd', palBtn).textContent : '⌘K') + '</kbd>';
+      }).catch(function () {});
+  }
+
+  // ---- For the curious ones who open the console ----
+  console.log('%cPA', 'font:700 48px Lato,sans-serif;color:#1c6fb8');
+  console.log('Hey, curious one 👋\nThis site is plain HTML, CSS and a little JS, no framework.\nTry ⌘K, or the Konami code. Say hi: hello@pierreantoineroy.com');
+})();

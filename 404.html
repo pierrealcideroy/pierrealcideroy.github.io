@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — Spilled | Pierre-Antoine Roy</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.lost{min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px}
+.glass{width:150px;height:auto;overflow:visible;margin:0 auto 18px;display:block}
+.glass .wall{fill:none;stroke:var(--fg);stroke-width:4;stroke-linejoin:round}
+.glass .rim{stroke:var(--accent);stroke-width:4;stroke-linecap:round}
+.glass .liquid{fill:var(--accent);transform-box:fill-box;transform-origin:bottom;animation:fill 2.4s cubic-bezier(.45,0,.55,1) infinite}
+.glass .drop{fill:var(--accent);opacity:0;animation:drip 2.4s ease-in infinite}
+.glass .drop.b{animation-delay:.25s}
+@keyframes fill{0%{transform:scaleY(.05)}70%,100%{transform:scaleY(1.06)}}
+@keyframes drip{0%,62%{opacity:0;transform:translateY(0)}68%{opacity:1}100%{opacity:0;transform:translateY(60px)}}
+.lost h1{margin:0 0 10px;max-width:none}
+.lost p{color:var(--muted);font-weight:300;margin:0 0 24px}
+</style>
+</head><body>
+<main class="lost"><div>
+  <svg class="glass" viewBox="0 0 120 150" aria-hidden="true">
+    <rect class="liquid" x="22" y="34" width="76" height="102" rx="2"/>
+    <circle class="drop" cx="20" cy="36" r="4"/><circle class="drop b" cx="100" cy="36" r="4"/>
+    <path class="wall" d="M18 30 L22 140 H98 L102 30"/>
+    <path class="rim" d="M16 58 H26 M94 58 H104"/>
+  </svg>
+  <h1>404 <span class="dash">—</span> Spilled<span class="caret" aria-hidden="true"></span></h1>
+  <p>This page overflowed and is gone. Let's pour a fresh one.</p>
+  <a class="btn" href="/">← Back home</a>
+</div></main>
+</body></html>

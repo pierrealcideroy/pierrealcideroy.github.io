@@ -54,9 +54,11 @@
       experience: $$('.job').map(function (j) {
         var meta = text($('.meta', j)).split('|');
         var h3 = $('h3', j).cloneNode(true), at = $('.at', h3), company = at ? at.textContent.replace(/^@/, '').trim() : undefined;
-        if (at) at.remove();
+        var tag = $('.tag', h3), status = tag ? text(tag).toLowerCase() : undefined;
+        if (at) at.remove(); if (tag) tag.remove();
         var p = $(':scope > p', j);
-        return { role: text(h3), company: company, type: meta[0].trim(), dates: (meta[1] || '').trim(),
+        return { role: text(h3), company: company, companyUrl: at && at.href ? at.href : undefined, status: status,
+                 type: meta[0].trim(), dates: (meta[1] || '').trim(),
                  summary: p ? text(p) : undefined, highlights: $$('.ups li', j).map(text) };
       }),
       skills: $$('#skills li').map(text),
@@ -111,29 +113,77 @@
     if (kpos === konami.length) { kpos = 0; pour(); }
   });
 
+  // ---- Confetti: two cannons in the bottom corners fire towards the middle, then the paper flutters down ----
+  var confettiRunning = false;
+  function confetti() {
+    if (confettiRunning || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    confettiRunning = true;
+    var cv = document.createElement('canvas'), ctx = cv.getContext('2d');
+    cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:75';
+    document.body.appendChild(cv);
+    var dpr = Math.min(2, devicePixelRatio || 1), W = innerWidth, H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.scale(dpr, dpr);
+    var colors = ['#ff5e5b', '#ffbe0b', '#2ec4b6', '#3a86ff', '#8338ec', '#ff006e', '#06d6a0', '#fb5607'];
+    var parts = [], N = Math.round(Math.min(160, 70 + W / 10)); // per cannon
+    var power = Math.sqrt(H) * 1.05; // reaches about the top third on any screen
+    function cannon(x, dir) {
+      for (var i = 0; i < N; i++) {
+        var angle = (-90 + dir * (18 + Math.random() * 32)) * Math.PI / 180; // up and towards the middle
+        var speed = power * (0.55 + Math.random() * 0.6);
+        parts.push({ x: x, y: H + 10, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+          w: 6 + Math.random() * 6, h: 8 + Math.random() * 8, round: Math.random() < .25,
+          rot: Math.random() * 6.28, spin: (Math.random() - .5) * .3, flip: Math.random() * 6.28, flipSpeed: .08 + Math.random() * .12,
+          sway: Math.random() * 6.28, color: colors[(Math.random() * colors.length) | 0] });
+      }
+    }
+    cannon(0, 1); cannon(W, -1);
+    var last = performance.now();
+    function tick(now) {
+      var dt = Math.min(2.5, (now - last) / 16.67); last = now; // 1 = one 60 fps frame
+      ctx.clearRect(0, 0, W, H);
+      var alive = 0;
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        p.vx *= Math.pow(0.985, dt); p.vy = p.vy * Math.pow(0.985, dt) + 0.32 * dt; // air drag + gravity
+        if (p.vy > 2.6) p.vy = 2.6; // paper falls slowly once it turns over
+        p.sway += 0.05 * dt; p.x += (p.vx + (p.vy > 0 ? Math.sin(p.sway) * 0.9 : 0)) * dt; p.y += p.vy * dt;
+        p.rot += p.spin * dt; p.flip += p.flipSpeed * dt;
+        if (p.y > H + 30) continue;
+        alive++;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(1, Math.cos(p.flip)); // flip = 3D tumble
+        ctx.fillStyle = p.color;
+        if (p.round) { ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, 6.28); ctx.fill(); }
+        else ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+      if (alive) requestAnimationFrame(tick); else { cv.remove(); confettiRunning = false; }
+    }
+    requestAnimationFrame(tick);
+  }
+
   // ---- Command palette: ⌘K / Ctrl+K or "/" ----
   function go(id) { return function () { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }; }
   function open(url) { return function () { window.open(url, '_blank', 'noopener'); }; }
   var commands = [
-    { name: 'now', hint: 'what I am up to', run: go('now') },
-    { name: 'experience', hint: 'the CV part', run: go('experience') },
-    { name: 'skills', hint: 'skills and tools', run: go('skills') },
-    { name: 'apptweak', hint: 'apptweak.com ↗', run: open('https://www.apptweak.com') },
-    { name: 'spiller', hint: 'my game on the App Store ↗', run: open('https://apps.apple.com/app/id6828435267') },
-    { name: 'linkedin', hint: 'say hi ↗', run: open('https://www.linkedin.com/in/pierre-antoine-roy') },
-    { name: 'email', hint: 'copy my address', run: function () { copyEmail('hello@pierreantoineroy.com'); } },
-    { name: 'json', hint: 'my resume as JSON', run: showJson },
-    { name: 'theme', hint: 'lights on / off', run: toggleTheme },
-    { name: 'source', hint: 'this site on GitHub ↗', run: open('https://github.com/pierrealcideroy/pierrealcideroy.github.io') },
-    { name: 'pour', hint: 'try it', run: function () { setTimeout(pour, 150); } },
-    { name: 'top', hint: 'back to the top', run: function () { scrollTo({ top: 0, behavior: 'smooth' }); } }
+    { name: 'Confetti', hint: 'celebrate something 🎉', run: function () { setTimeout(confetti, 120); } },
+    { name: 'Now', hint: 'what I am up to', run: go('now') },
+    { name: 'Experience', hint: 'the CV part', run: go('experience') },
+    { name: 'Skills', hint: 'skills and tools', run: go('skills') },
+    { name: 'AppTweak', hint: 'apptweak.com ↗', run: open('https://www.apptweak.com') },
+    { name: 'Spiller!', hint: 'my game on the App Store ↗', run: open('https://apps.apple.com/app/id6828435267') },
+    { name: 'LinkedIn', hint: 'say hi ↗', run: open('https://www.linkedin.com/in/pierre-antoine-roy') },
+    { name: 'Email', hint: 'copy my address', run: function () { copyEmail('hello@pierreantoineroy.com'); } },
+    { name: 'Resume as JSON', hint: 'my CV, the geeky way', run: showJson },
+    { name: 'Theme', hint: 'lights on / off', run: toggleTheme },
+    { name: 'Source', hint: 'this site on GitHub ↗', run: open('https://github.com/pierrealcideroy/pierrealcideroy.github.io') },
+    { name: 'Top', hint: 'back to the top', run: function () { scrollTo({ top: 0, behavior: 'smooth' }); } }
   ];
   var pal, input, list, shown = [], sel = 0;
   function render() {
     var q = input.value.trim().toLowerCase();
-    shown = commands.filter(function (c) { return !q || c.name.indexOf(q) >= 0 || c.hint.toLowerCase().indexOf(q) >= 0; });
+    shown = commands.filter(function (c) { return !q || c.name.toLowerCase().indexOf(q) >= 0 || c.hint.toLowerCase().indexOf(q) >= 0; });
     sel = Math.min(sel, Math.max(0, shown.length - 1));
-    list.innerHTML = shown.length ? '' : '<li aria-disabled="true"><small>command not found: ' + q.replace(/</g, '&lt;') + '</small></li>';
+    list.innerHTML = shown.length ? '' : '<li aria-disabled="true"><small>Nothing for “' + q.replace(/</g, '&lt;') + '”, try confetti</small></li>';
     shown.forEach(function (c, i) {
       var li = document.createElement('li');
       li.setAttribute('role', 'option'); li.setAttribute('aria-selected', i === sel);
@@ -147,7 +197,7 @@
   function openPalette() {
     if (!pal) {
       pal = document.createElement('dialog'); pal.className = 'palette'; pal.setAttribute('aria-label', 'Command palette');
-      pal.innerHTML = '<input type="text" placeholder="> type a command…" aria-label="Command" autocomplete="off" spellcheck="false"><ul role="listbox"></ul><div class="hint">↑↓ to move · enter to run · esc to close</div>';
+      pal.innerHTML = '<input type="text" placeholder="Type a command…" aria-label="Command" autocomplete="off" spellcheck="false"><ul role="listbox"></ul><div class="hint">↑↓ to move · enter to run · esc to close</div>';
       document.body.appendChild(pal);
       input = $('input', pal); list = $('ul', pal);
       input.addEventListener('input', function () { sel = 0; render(); });
@@ -180,8 +230,16 @@
         if (s < 3600) ago = rtf.format(-Math.max(1, Math.round(s / 60)), 'minute');
         else if (s < 86400) ago = rtf.format(-Math.round(s / 3600), 'hour');
         else ago = rtf.format(-Math.round(s / 86400), 'day');
-        dep.innerHTML = 'deployed ' + ago + ' · <a href="' + c.html_url + '" target="_blank" rel="noopener">' + c.sha.slice(0, 7) + '</a> · <kbd>' + (palBtn ? $('kbd', palBtn).textContent : '⌘K') + '</kbd>';
+        dep.innerHTML = 'updated ' + ago + ' · press <kbd>' + (palBtn ? $('kbd', palBtn).textContent : '⌘K') + '</kbd>';
       }).catch(function () {});
+  }
+
+  // ---- Footer: my local time, live ----
+  var clock = $('#clock');
+  if (clock && window.Intl) {
+    var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit' });
+    var tick = function () { clock.textContent = fmt.format(new Date()); };
+    tick(); setInterval(tick, 10000);
   }
 
   // ---- For the curious ones who open the console ----

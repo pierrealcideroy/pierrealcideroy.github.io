@@ -261,7 +261,7 @@
         if (s < 3600) ago = rtf.format(-Math.max(1, Math.round(s / 60)), 'minute');
         else if (s < 86400) ago = rtf.format(-Math.round(s / 3600), 'hour');
         else ago = rtf.format(-Math.round(s / 86400), 'day');
-        dep.innerHTML = 'updated ' + ago + ' · press <kbd>' + (palBtn ? $('kbd', palBtn).textContent : '⌘K') + '</kbd>';
+        dep.innerHTML = 'updated ' + ago + '<span class="kbd-hint"> · press <kbd>' + (palBtn ? $('kbd', palBtn).textContent : '⌘K') + '</kbd></span>';
       }).catch(function () {});
   }
 

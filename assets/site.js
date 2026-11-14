@@ -183,7 +183,6 @@
     { name: 'Bluesky', hint: '@pierreantoineroy.com ↗', run: open('https://bsky.app/profile/pierreantoineroy.com') },
     { name: 'X', hint: '@pierrealcideroy ↗', run: open('https://x.com/pierrealcideroy') },
     { name: 'GitHub', hint: 'my code ↗', run: open('https://github.com/pierrealcideroy') },
-    { name: 'Play', hint: 'pour one glass', run: go('play') },
     { name: 'Book a call', hint: 'pick a slot in my calendar ↗', run: open('https://calendar.notion.so/meet/pierre-antoine-6c1i902our/u1fg04y05') },
     { name: 'WhatsApp', hint: 'chat with me ↗', run: open('https://wa.me/message/7NE462RQVZXAL1') },
     { name: 'Email', hint: 'copy my address', run: function () { copyEmail('hello@pierreantoineroy.com'); } },
@@ -301,49 +300,6 @@
     };
     mark.addEventListener('mouseenter', writeMark);
     mark.addEventListener('focus', writeMark);
-  }
-
-  // ---- Mini-game: one glass of Spiller! (hold to pour, release on the line) ----
-  var game = $('#glass-game');
-  if (game) {
-    var liquid = $('.g-liquid', game), line = $('.g-line', game), band = $('.g-band', game), stream = $('.g-stream', game);
-    var msg = $('#play-msg'), streakEl = $('#play-streak'), more = $('#play-more');
-    var RISE = 0.34, TOL = 0.03;                 // glass heights per second; half-width of the Perfect zone
-    var level = 0, target = 0, pouring = false, last = 0, streak = 0;
-    var place = function () {
-      liquid.style.height = (level * 100) + '%';
-      line.style.bottom = (target * 100) + '%';
-      band.style.bottom = ((target - TOL) * 100) + '%'; band.style.height = (TOL * 200) + '%';
-    };
-    var newRound = function () { level = 0; target = 0.42 + Math.random() * 0.4; game.classList.remove('spilled'); place(); };
-    var tick = function (now) {
-      if (!pouring) return;
-      level = Math.min(1.08, level + RISE * (now - last) / 1000); last = now; place();
-      if (level >= 1.08) { stop(); return; }   // overflowed: the glass is full and spilling
-      requestAnimationFrame(tick);
-    };
-    var start = function (e) {
-      if (pouring) return;
-      if (e) e.preventDefault();
-      if (game.classList.contains('done')) { game.classList.remove('done'); newRound(); }
-      pouring = true; last = performance.now(); game.classList.add('pouring'); requestAnimationFrame(tick);
-    };
-    var stop = function () {
-      if (!pouring) return;
-      pouring = false; game.classList.remove('pouring'); game.classList.add('done');
-      var d = level - target, text;
-      if (level >= 1) { streak = 0; game.classList.add('spilled'); text = 'Spilled! Tap to try again.'; }
-      else if (Math.abs(d) <= TOL) { streak++; text = streak > 1 ? 'Perfect ×' + streak + '! Tap for another glass.' : 'Perfect! Tap for another glass.'; confetti(); more.classList.add('glow'); }
-      else { streak = 0; text = (d < 0 ? 'A bit short' : 'A bit over') + ' (' + Math.round(Math.abs(d) * 100) + '%). Tap to try again.'; }
-      msg.textContent = text; streakEl.textContent = streak > 1 ? '×' + streak : '';
-    };
-    game.addEventListener('pointerdown', function (e) { game.setPointerCapture(e.pointerId); start(e); });
-    game.addEventListener('pointerup', stop);
-    game.addEventListener('pointercancel', stop);
-    game.addEventListener('keydown', function (e) { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) start(e); });
-    game.addEventListener('keyup', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); stop(); } });
-    if (matchMedia('(pointer: coarse)').matches) msg.textContent = 'Hold the glass to pour.'; // no Space bar on a phone
-    newRound();
   }
 
   // ---- For the curious ones who open the console ----

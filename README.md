@@ -26,3 +26,7 @@ The hidden `#writing` section is ready for the future Substack feed.
 CSS and JS links carry a version tag (`?v=…`): bump it in `index.html`, `spiller/index.html` and `404.html` when you change `assets/`, so browsers fetch the new file.
 
 Edit, commit, push to `main`: the site updates in about a minute.
+
+## Ideas for later
+
+- Mini-game: a one-glass version of Spiller! on the home page (hold to pour, release on the line, confetti on a Perfect, App Store badge). Built and removed on 2026-11-14 (commit 3646dda has the code); PA prefers a Substack or Bluesky feed there for now.

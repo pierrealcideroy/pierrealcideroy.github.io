@@ -49,7 +49,7 @@
       name: 'Pierre-Antoine Roy',
       headline: h1 ? text(h1).split('—').slice(1).join('—').trim() : undefined,
       about: text($('.lede')),
-      contact: { email: 'hello@pierreantoineroy.com', linkedin: 'https://www.linkedin.com/in/pierre-antoine-roy', website: 'https://pierreantoineroy.com' },
+      contact: { email: 'hello@pierreantoineroy.com', linkedin: 'https://www.linkedin.com/in/pierre-antoine-roy', bluesky: 'https://bsky.app/profile/pierreantoineroy.com', x: 'https://x.com/pierrealcideroy', website: 'https://pierreantoineroy.com' },
       now: $$('[data-now]').map(function (c) { return { project: c.dataset.now, status: text($('.meta', c)) }; }),
       experience: $$('.job').map(function (j) {
         var meta = text($('.meta', j)).split('|');
@@ -172,6 +172,8 @@
     { name: 'AppTweak', hint: 'apptweak.com ↗', run: open('https://www.apptweak.com') },
     { name: 'Spiller!', hint: 'my game on the App Store ↗', run: open('https://apps.apple.com/app/id6828435267') },
     { name: 'LinkedIn', hint: 'say hi ↗', run: open('https://www.linkedin.com/in/pierre-antoine-roy') },
+    { name: 'Bluesky', hint: '@pierreantoineroy.com ↗', run: open('https://bsky.app/profile/pierreantoineroy.com') },
+    { name: 'X', hint: '@pierrealcideroy ↗', run: open('https://x.com/pierrealcideroy') },
     { name: 'Email', hint: 'copy my address', run: function () { copyEmail('hello@pierreantoineroy.com'); } },
     { name: 'Resume as JSON', hint: 'my CV, the geeky way', run: showJson },
     { name: 'Theme', hint: 'lights on / off', run: toggleTheme },

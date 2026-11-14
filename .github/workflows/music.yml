@@ -1,4 +1,4 @@
-# Keeps the "On repeat" section fresh: every 3 hours, asks Apple Music for my recently played albums
+# Keeps the "Recently played" section fresh: every 3 hours, asks Apple Music for my recently played albums
 # and commits assets/music.json when the list changed. Also runs on demand (Actions > Recently played > Run workflow).
 name: Recently played
 on:
@@ -29,5 +29,5 @@ jobs:
           git config user.name "music-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/music.json
-          git commit -m "On repeat: update recently played albums"
+          git commit -m "Recently played: update albums"
           git push

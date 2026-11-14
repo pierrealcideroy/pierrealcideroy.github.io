@@ -28,7 +28,7 @@ CSS and JS links carry a version tag (`?v=…`): bump it in `index.html`, `spill
 
 Edit, commit, push to `main`: the site updates in about a minute.
 
-## On repeat (Apple Music)
+## Recently played (Apple Music)
 
 `.github/workflows/music.yml` runs every 3 hours: `tools/music/fetch.mjs` asks the Apple Music API for my recently played albums and commits `assets/music.json`, which the home page reads. The section stays hidden while that file doesn't exist.
 

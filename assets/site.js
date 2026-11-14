@@ -124,19 +124,21 @@
     var dpr = Math.min(2, devicePixelRatio || 1), W = innerWidth, H = innerHeight;
     cv.width = W * dpr; cv.height = H * dpr; ctx.scale(dpr, dpr);
     var colors = ['#ff5e5b', '#ffbe0b', '#2ec4b6', '#3a86ff', '#8338ec', '#ff006e', '#06d6a0', '#fb5607'];
-    var parts = [], N = Math.round(Math.min(160, 70 + W / 10)); // per cannon
-    var power = Math.sqrt(H) * 1.05; // reaches about the top third on any screen
+    var parts = [], N = Math.round(Math.min(220, 110 + W / 8)); // per cannon and per wave
+    var power = Math.sqrt(H) * 1.3; // the strongest pieces reach the top of the screen
     function cannon(x, dir) {
       for (var i = 0; i < N; i++) {
         var angle = (-90 + dir * (18 + Math.random() * 32)) * Math.PI / 180; // up and towards the middle
-        var speed = power * (0.55 + Math.random() * 0.6);
+        var speed = power * (0.5 + Math.random() * 0.65);
         parts.push({ x: x, y: H + 10, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
           w: 6 + Math.random() * 6, h: 8 + Math.random() * 8, round: Math.random() < .25,
           rot: Math.random() * 6.28, spin: (Math.random() - .5) * .3, flip: Math.random() * 6.28, flipSpeed: .08 + Math.random() * .12,
           sway: Math.random() * 6.28, color: colors[(Math.random() * colors.length) | 0] });
       }
     }
+    // Three waves, so the screen stays covered for a few seconds.
     cannon(0, 1); cannon(W, -1);
+    [280, 560].forEach(function (t) { setTimeout(function () { cannon(0, 1); cannon(W, -1); }, t); });
     var last = performance.now();
     function tick(now) {
       var dt = Math.min(2.5, (now - last) / 16.67); last = now; // 1 = one 60 fps frame
@@ -168,7 +170,7 @@
     // Secret: only listed once the visitor has typed at least "conf".
     { name: 'Confetti', hint: 'celebrate something 🎉', secret: 'conf', run: function () {
       setTimeout(confetti, 120);
-      var first = true; try { first = !localStorage.getItem('confettiPal'); localStorage.setItem('confettiPal', '1'); } catch (e) {}
+      var first = true; try { first = !sessionStorage.getItem('confettiPal'); sessionStorage.setItem('confettiPal', '1'); } catch (e) {} // once per visit
       if (first) setTimeout(function () { toast("Congrats, you found the Confetti command 🎉 You're officially a confetti pal 👏", 5000); }, 600);
     } },
     { name: 'Now', hint: 'what I am up to', run: go('now') },

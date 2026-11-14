@@ -181,6 +181,7 @@
     { name: 'LinkedIn', hint: 'say hi ↗', run: open('https://www.linkedin.com/in/pierre-antoine-roy') },
     { name: 'Bluesky', hint: '@pierreantoineroy.com ↗', run: open('https://bsky.app/profile/pierreantoineroy.com') },
     { name: 'X', hint: '@pierrealcideroy ↗', run: open('https://x.com/pierrealcideroy') },
+    { name: 'WhatsApp', hint: 'chat with me ↗', run: open('https://wa.me/message/7NE462RQVZXAL1') },
     { name: 'Email', hint: 'copy my address', run: function () { copyEmail('hello@pierreantoineroy.com'); } },
     { name: 'Resume as JSON', hint: 'my CV, the geeky way', run: showJson },
     { name: 'Theme', hint: 'lights on / off', run: toggleTheme },

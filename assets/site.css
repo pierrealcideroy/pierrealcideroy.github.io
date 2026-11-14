@@ -2,17 +2,17 @@
    Colours are tokens: light by default, dark from the system or from the theme switch (data-theme on <html>). */
 :root{
   --bg:#fff;--fg:#2e2e2e;--muted:#6a6a6a;--soft:#9b9b9b;--rule:#dcdcdc;--card:#f7f7f5;--chip:#efefec;
-  --accent:#1c6fb8;--logo:#191919;--toast:#2e2e2e;--toast-fg:#fff;
+  --accent:#1c6fb8;--wine:#8f1d3b;--logo:#191919;--toast:#2e2e2e;--toast-fg:#fff;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --sans:Lato,system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
   --bg:#16171d;--fg:#ececee;--muted:#a6a6ae;--soft:#7c7c86;--rule:#2d2f38;--card:#1c1e26;--chip:#252731;
-  --accent:#7fb2ff;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}}
+  --accent:#7fb2ff;--wine:#e5728d;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}}
 :root[data-theme=dark]{
   --bg:#16171d;--fg:#ececee;--muted:#a6a6ae;--soft:#7c7c86;--rule:#2d2f38;--card:#1c1e26;--chip:#252731;
-  --accent:#7fb2ff;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}
+  --accent:#7fb2ff;--wine:#e5728d;--logo:#fff;--toast:#ececee;--toast-fg:#16171d;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -34,6 +34,17 @@ a:hover{color:var(--accent);text-decoration-color:var(--accent)}
 .btn{font:500 13px/1 var(--mono);color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;transition:border-color .15s,color .15s,transform .15s}
 .btn:hover{color:var(--fg);border-color:var(--soft)}
 .btn:active{transform:scale(.96)}
+/* Round icon buttons in the top bar: WhatsApp (green on hover) and the moon / sun theme switch */
+.btn.round{width:36px;height:36px;padding:0;justify-content:center}
+#open-palette{height:36px;padding-top:0;padding-bottom:0}
+.btn.round .ico{width:16px;height:16px}
+.btn.wa:hover{color:#fff;background:#25d366;border-color:#25d366}
+#theme .ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#theme .sun{display:none}
+#theme:hover .moon{transform:rotate(-20deg)}#theme:hover .sun{transform:rotate(45deg)}
+#theme .ico{transition:transform .3s}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) #theme .moon{display:none}:root:not([data-theme=light]) #theme .sun{display:block}}
+:root[data-theme=dark] #theme .moon{display:none}:root[data-theme=dark] #theme .sun{display:block}
 kbd{font:500 12px var(--mono);border:1px solid var(--rule);border-bottom-width:2px;border-radius:5px;padding:1px 5px;color:var(--muted)}
 
 /* Hero (mirrors the CV header) */
@@ -51,7 +62,7 @@ h1 .dash{color:var(--soft);font-weight:400}
 
 /* Section labels: CV rule + a code comment */
 .label{display:flex;justify-content:space-between;align-items:baseline;font-size:17px;font-weight:700;margin:0 0 20px;padding-bottom:9px;border-bottom:1px solid var(--rule)}
-.label .slash{font:400 15px var(--mono);color:var(--accent);margin-right:6px}
+.label .slash{font:400 15px var(--mono);color:var(--wine);margin-right:6px}
 .label small{font-weight:700;font-size:14px}
 .label .btn{padding:5px 10px;font-size:12px}
 

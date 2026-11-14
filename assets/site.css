@@ -140,7 +140,7 @@ blockquote footer{margin-top:14px;color:var(--fg);font-weight:400;font-size:15px
 .foot .mono{font-size:12.5px}
 .foot .local{flex-basis:100%;margin:0 0 6px;font-size:17px;font-weight:700;color:var(--fg)}
 .foot .local .slash{font:400 15px var(--mono);color:var(--wine);margin-right:6px}
-.foot .local #clock{font-variant-numeric:tabular-nums;color:var(--accent)}
+.foot .local #clock{font-variant-numeric:tabular-nums;color:var(--wine)}
 .foot nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px}
 
 /* Toast */

@@ -222,9 +222,27 @@
       pal.addEventListener('click', function (e) { if (e.target === pal) pal.close(); });
     }
     if (pal.open) { pal.close(); return; }
-    input.value = ''; sel = 0; render(); pal.showModal(); input.focus();
+    input.value = ''; sel = 0; render();
+    // On a phone, show the list without popping the keyboard (it would hide half of it); tapping the field opens it.
+    var phone = isPhone(); pal.autofocus = phone;
+    pal.showModal();
+    if (phone) { if (document.activeElement === input) input.blur(); } else input.focus();
   }
   var palBtn = $('#open-palette'); if (palBtn) palBtn.addEventListener('click', openPalette);
+
+  // ---- Phones: floating "Commands" pill, hidden while scrolling down, back as soon as you scroll up ----
+  function isPhone() { return matchMedia('(max-width: 599px) and (pointer: coarse)').matches; }
+  var fab = $('#fab');
+  if (fab) {
+    fab.addEventListener('click', openPalette);
+    var lastY = scrollY;
+    addEventListener('scroll', function () {
+      var y = scrollY, atEnd = innerHeight + y >= document.documentElement.scrollHeight - 40;
+      if (Math.abs(y - lastY) < 6 && !atEnd) return; // ignore tiny jitters
+      fab.classList.toggle('away', y > lastY && y > 120 && !atEnd);
+      lastY = y;
+    }, { passive: true });
+  }
   addEventListener('keydown', function (e) {
     var typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPalette(); }

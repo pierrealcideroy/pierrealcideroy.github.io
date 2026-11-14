@@ -302,6 +302,58 @@
     mark.addEventListener('focus', writeMark);
   }
 
+  // ---- Bluesky feed: my 3 latest posts (reposts and replies left out), from Bluesky's public API ----
+  var feed = $('#bsky-posts');
+  if (feed && window.fetch) {
+    var HANDLE = 'pierreantoineroy.com';
+    var el = function (tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
+    var linkify = function (p, text) { // text stays text (no HTML injection); URLs become links
+      text.split(/(https?:\/\/[^\s]+)/g).forEach(function (part, i) {
+        if (i % 2) { var a = el('a', '', part.replace(/^https?:\/\//, '')); a.href = part; a.target = '_blank'; a.rel = 'noopener'; p.appendChild(a); }
+        else if (part) p.appendChild(document.createTextNode(part));
+      });
+    };
+    var dateFmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    var failed = function () {
+      feed.textContent = '';
+      var p = el('p', 'muted'); var a = el('a', '', 'See my posts on Bluesky ↗');
+      a.href = 'https://bsky.app/profile/' + HANDLE; a.target = '_blank'; a.rel = 'noopener'; p.appendChild(a); feed.appendChild(p);
+    };
+    fetch('https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=' + HANDLE + '&limit=20&filter=posts_no_replies')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (data) {
+        var posts = (data.feed || []).filter(function (item) { return !item.reason; }).slice(0, 3);
+        if (!posts.length) return failed();
+        feed.textContent = '';
+        posts.forEach(function (item) {
+          var post = item.post, rec = post.record || {}, embed = post.embed || {};
+          var card = el('a', 'card post');
+          card.href = 'https://bsky.app/profile/' + HANDLE + '/post/' + post.uri.split('/').pop();
+          card.target = '_blank'; card.rel = 'noopener';
+          var meta = el('div', 'meta');
+          meta.appendChild(el('span', '', dateFmt.format(new Date(rec.createdAt))));
+          meta.appendChild(el('span', '', 'Bluesky ↗'));
+          card.appendChild(meta);
+          if (rec.text) { var p = el('p', 'post-text'); linkify(p, rec.text); card.appendChild(p); }
+          var images = embed.images || (embed.media && embed.media.images);
+          if (images && images.length) {
+            var img = el('img', 'post-img'); img.src = images[0].thumb; img.loading = 'lazy';
+            img.alt = images[0].alt || 'Image from a Bluesky post by Pierre-Antoine Roy';
+            card.appendChild(img);
+          } else if (embed.external) {
+            card.appendChild(el('p', 'post-link', embed.external.title || embed.external.uri));
+          }
+          var stats = el('p', 'post-stats');
+          stats.appendChild(el('span', '', '♥ ' + (post.likeCount || 0)));
+          stats.appendChild(el('span', '', '↻ ' + (post.repostCount || 0)));
+          stats.appendChild(el('span', '', '↩ ' + (post.replyCount || 0)));
+          card.appendChild(stats);
+          feed.appendChild(card);
+        });
+      })
+      .catch(failed);
+  }
+
   // ---- For the curious ones who open the console ----
   console.log('%cPA', 'font:700 48px Lato,sans-serif;color:#1c6fb8');
   console.log('Hey, curious one 👋\nThis site is plain HTML, CSS and a little JS, no framework.\nTry ⌘K, or the Konami code. Say hi: hello@pierreantoineroy.com');

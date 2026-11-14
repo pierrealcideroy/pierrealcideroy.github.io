@@ -22,4 +22,6 @@ Share image of the home page: `assets/og.jpg`, made from `tools/og/og.html`. To 
 
 The hidden `#writing` section is ready for the future Substack feed.
 
+CSS and JS links carry a version tag (`?v=…`): bump it in `index.html`, `spiller/index.html` and `404.html` when you change `assets/`, so browsers fetch the new file.
+
 Edit, commit, push to `main`: the site updates in about a minute.

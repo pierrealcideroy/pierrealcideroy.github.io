@@ -276,6 +276,31 @@
     tick(); setInterval(tick, 1000);
   }
 
+  // ---- Hovering the PA logo in the top bar writes it again, like the intro (quicker) ----
+  var mark = $('.top .mark');
+  if (mark && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var markPaths = $$('path', mark), markLens = markPaths.map(function (p) { return p.getTotalLength(); });
+    var markTotal = markLens.reduce(function (a, b) { return a + b; }, 0), writing = false;
+    var easeInOut = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+    var writeMark = function () {
+      if (writing) return; writing = true;
+      var start = null;
+      requestAnimationFrame(function step(now) {
+        if (start === null) start = now;
+        var t = Math.min(1, (now - start) / 1000), ink = easeInOut(t) * markTotal;
+        markPaths.forEach(function (p, i) {
+          var d = Math.max(0, Math.min(markLens[i], ink)); ink -= markLens[i];
+          p.style.opacity = d > 0 ? 1 : 0; // a zero-length round cap would still show a dot
+          p.style.strokeDasharray = d + ' ' + (markLens[i] + 1);
+        });
+        if (t < 1) requestAnimationFrame(step);
+        else { markPaths.forEach(function (p) { p.style.opacity = ''; p.style.strokeDasharray = ''; }); writing = false; }
+      });
+    };
+    mark.addEventListener('mouseenter', writeMark);
+    mark.addEventListener('focus', writeMark);
+  }
+
   // ---- For the curious ones who open the console ----
   console.log('%cPA', 'font:700 48px Lato,sans-serif;color:#1c6fb8');
   console.log('Hey, curious one 👋\nThis site is plain HTML, CSS and a little JS, no framework.\nTry ⌘K, or the Konami code. Say hi: hello@pierreantoineroy.com');

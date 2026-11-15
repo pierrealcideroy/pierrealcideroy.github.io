@@ -1,6 +1,12 @@
 {
- "updated": "2026-11-14T14:35:15.148Z",
+ "updated": "2026-11-15T01:00:36.217Z",
  "albums": [
+  {
+   "name": "Bach: Guitar Pieces by Julian Bream (2023.b Remastered, Vienna 1956)",
+   "artist": "Julian Bream",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c5/55/66/c5556634-5560-6e82-3958-68278f3836a5/5905348248389.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/bach-guitar-pieces-by-julian-bream-2023-b-remastered/1676072477"
+  },
   {
    "name": "Business As Usual",
    "artist": "Men At Work",
@@ -30,12 +36,6 @@
    "artist": "Chon",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/14/31/6a/14316aae-ccc2-7c47-1096-145bf47a0a3f/888174245676.jpg/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/newborn-sun/701075070"
-  },
-  {
-   "name": "Grow",
-   "artist": "Chon",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a4/0a/b8/a40ab85c-9630-2bc9-7536-a14357b4d2d3/198704633362_Cover.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/grow/1828877984"
   }
  ]
 }

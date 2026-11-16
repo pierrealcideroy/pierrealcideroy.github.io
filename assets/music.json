@@ -1,41 +1,41 @@
 {
- "updated": "2026-11-15T01:00:36.217Z",
+ "updated": "2026-11-16T21:58:50.555Z",
  "albums": [
   {
-   "name": "Bach: Guitar Pieces by Julian Bream (2023.b Remastered, Vienna 1956)",
-   "artist": "Julian Bream",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c5/55/66/c5556634-5560-6e82-3958-68278f3836a5/5905348248389.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/bach-guitar-pieces-by-julian-bream-2023-b-remastered/1676072477"
+   "name": "Voices Unheard",
+   "artist": "JAYLER",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e8/7b/d6/e87bd6b2-4356-e22a-aeb1-6416f8a51793/5026854610641.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/voices-unheard/1874266386"
   },
   {
-   "name": "Business As Usual",
-   "artist": "Men At Work",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/80/07/23/80072391-3543-cdb9-e298-08d5f0595f41/dj.uyepaoyc.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/business-as-usual/282960957"
-  },
-  {
-   "name": "Revenant",
-   "artist": "Inferi",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ab/7b/14/ab7b143d-54ce-d7aa-260c-d99857ca936e/192562179383.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/revenant/1348075188"
-  },
-  {
-   "name": "Seasons In the Abyss",
-   "artist": "Slayer",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8f/27/a0/8f27a08a-6d42-8f55-be3f-ed094c45aec3/00602547577672.rgb.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/seasons-in-the-abyss/1440838326"
-  },
-  {
-   "name": "The Shape Of Colour",
-   "artist": "Intervals",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/82/67/7d/82677db2-76d4-fdaf-1461-e4f5989e760f/5026854922423.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/the-shape-of-colour/6784421963"
+   "name": "Drukqs (Expanded Edition)",
+   "artist": "Aphex Twin",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/95/35/8d/95358d64-b61e-aa24-d40d-2e7051dc5e78/5056818811784.png/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/drukqs-expanded-edition/6816158057"
   },
   {
    "name": "Newborn Sun",
    "artist": "Chon",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/14/31/6a/14316aae-ccc2-7c47-1096-145bf47a0a3f/888174245676.jpg/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/newborn-sun/701075070"
+  },
+  {
+   "name": "Teratogenesis (Deluxe Edition)",
+   "artist": "Revocation",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/d6/13/54d613db-9a2f-4caa-7193-8d6115d12ad1/781676517510.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/teratogenesis-deluxe-edition/1712900106"
+  },
+  {
+   "name": "Divine Intervention",
+   "artist": "Slayer",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/16/ad/09/16ad09f1-3686-0fc0-d24a-0b3470e52e81/00602547577702.rgb.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/divine-intervention/1440828219"
+  },
+  {
+   "name": "Bach: Guitar Pieces by Julian Bream (2023.b Remastered, Vienna 1956)",
+   "artist": "Julian Bream",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c5/55/66/c5556634-5560-6e82-3958-68278f3836a5/5905348248389.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/bach-guitar-pieces-by-julian-bream-2023-b-remastered/1676072477"
   }
  ]
 }

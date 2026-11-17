@@ -1,17 +1,17 @@
 {
- "updated": "2026-11-16T21:58:50.555Z",
+ "updated": "2026-11-17T07:51:43.142Z",
  "albums": [
-  {
-   "name": "Voices Unheard",
-   "artist": "JAYLER",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e8/7b/d6/e87bd6b2-4356-e22a-aeb1-6416f8a51793/5026854610641.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/voices-unheard/1874266386"
-  },
   {
    "name": "Drukqs (Expanded Edition)",
    "artist": "Aphex Twin",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/95/35/8d/95358d64-b61e-aa24-d40d-2e7051dc5e78/5056818811784.png/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/drukqs-expanded-edition/6816158057"
+  },
+  {
+   "name": "Voices Unheard",
+   "artist": "JAYLER",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e8/7b/d6/e87bd6b2-4356-e22a-aeb1-6416f8a51793/5026854610641.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/voices-unheard/1874266386"
   },
   {
    "name": "Newborn Sun",

@@ -1,6 +1,12 @@
 {
- "updated": "2026-11-17T07:51:43.142Z",
+ "updated": "2026-11-22T19:34:24.894Z",
  "albums": [
+  {
+   "name": "Toss a Coin to Your Witcher (Piano Version) - Single",
+   "artist": "Patrik Pietschmann",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/c6/f5/e1/c6f5e1fd-dd0a-ac63-cc86-8b0f33957434/artwork.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/toss-a-coin-to-your-witcher-piano-version-single/1496494171"
+  },
   {
    "name": "Drukqs (Expanded Edition)",
    "artist": "Aphex Twin",
@@ -30,12 +36,6 @@
    "artist": "Slayer",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/16/ad/09/16ad09f1-3686-0fc0-d24a-0b3470e52e81/00602547577702.rgb.jpg/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/divine-intervention/1440828219"
-  },
-  {
-   "name": "Bach: Guitar Pieces by Julian Bream (2023.b Remastered, Vienna 1956)",
-   "artist": "Julian Bream",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c5/55/66/c5556634-5560-6e82-3958-68278f3836a5/5905348248389.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/bach-guitar-pieces-by-julian-bream-2023-b-remastered/1676072477"
   }
  ]
 }

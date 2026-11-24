@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-22T19:34:24.894Z",
+ "updated": "2026-11-24T13:38:37.228Z",
  "albums": [
+  {
+   "name": "Selah",
+   "artist": "Jesus Molina",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/30/70/d53070a8-9ad6-2631-ff88-26efaa4d1add/789557950340.png/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/selah/1859544099"
+  },
+  {
+   "name": "Newborn Sun",
+   "artist": "Chon",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/14/31/6a/14316aae-ccc2-7c47-1096-145bf47a0a3f/888174245676.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/newborn-sun/701075070"
+  },
   {
    "name": "Toss a Coin to Your Witcher (Piano Version) - Single",
    "artist": "Patrik Pietschmann",
@@ -20,22 +32,10 @@
    "url": "https://music.apple.com/be/album/voices-unheard/1874266386"
   },
   {
-   "name": "Newborn Sun",
-   "artist": "Chon",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/14/31/6a/14316aae-ccc2-7c47-1096-145bf47a0a3f/888174245676.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/newborn-sun/701075070"
-  },
-  {
    "name": "Teratogenesis (Deluxe Edition)",
    "artist": "Revocation",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/d6/13/54d613db-9a2f-4caa-7193-8d6115d12ad1/781676517510.jpg/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/teratogenesis-deluxe-edition/1712900106"
-  },
-  {
-   "name": "Divine Intervention",
-   "artist": "Slayer",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/16/ad/09/16ad09f1-3686-0fc0-d24a-0b3470e52e81/00602547577702.rgb.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/divine-intervention/1440828219"
   }
  ]
 }

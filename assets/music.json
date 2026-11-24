@@ -1,6 +1,12 @@
 {
- "updated": "2026-11-24T13:38:37.228Z",
+ "updated": "2026-11-24T23:53:14.264Z",
  "albums": [
+  {
+   "name": "Elephantitis - EP",
+   "artist": "Hail the Sun",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/f6/af/3b/f6af3bd0-2ee9-deed-7f0e-5354afc59a62/845121049800.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/elephantitis-ep/541663916"
+  },
   {
    "name": "Selah",
    "artist": "Jesus Molina",
@@ -30,12 +36,6 @@
    "artist": "JAYLER",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e8/7b/d6/e87bd6b2-4356-e22a-aeb1-6416f8a51793/5026854610641.jpg/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/voices-unheard/1874266386"
-  },
-  {
-   "name": "Teratogenesis (Deluxe Edition)",
-   "artist": "Revocation",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/d6/13/54d613db-9a2f-4caa-7193-8d6115d12ad1/781676517510.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/teratogenesis-deluxe-edition/1712900106"
   }
  ]
 }

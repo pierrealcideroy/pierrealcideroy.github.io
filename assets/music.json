@@ -1,6 +1,12 @@
 {
- "updated": "2026-11-24T23:53:14.264Z",
+ "updated": "2026-11-25T19:13:28.793Z",
  "albums": [
+  {
+   "name": "cut. turn. fade. back.",
+   "artist": "Hail the Sun",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e2/b9/f4/e2b9f40a-8fbf-2a33-efda-16254c2015cf/199538487046.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/cut-turn-fade-back/1833290045"
+  },
   {
    "name": "Elephantitis - EP",
    "artist": "Hail the Sun",
@@ -30,12 +36,6 @@
    "artist": "Aphex Twin",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/95/35/8d/95358d64-b61e-aa24-d40d-2e7051dc5e78/5056818811784.png/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/drukqs-expanded-edition/6816158057"
-  },
-  {
-   "name": "Voices Unheard",
-   "artist": "JAYLER",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e8/7b/d6/e87bd6b2-4356-e22a-aeb1-6416f8a51793/5026854610641.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/voices-unheard/1874266386"
   }
  ]
 }

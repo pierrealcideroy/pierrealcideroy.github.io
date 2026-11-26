@@ -1,6 +1,24 @@
 {
- "updated": "2026-11-25T19:13:28.793Z",
+ "updated": "2026-11-26T16:50:44.508Z",
  "albums": [
+  {
+   "name": "Juggling Moves (Beginner) - Single",
+   "artist": "TTNG",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3c/a0/a5/3ca0a591-2f47-a920-94b5-82669f4cacc2/859743772152_cover.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/juggling-moves-beginner-single/6799489752"
+  },
+  {
+   "name": "Animals Acoustic",
+   "artist": "TTNG",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3d/c7/fc/3dc7fc97-c265-d49b-a673-7487634cd6e0/114100.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/animals-acoustic/1808576743"
+  },
+  {
+   "name": "Destination Rachmaninov: Departure",
+   "artist": "Daniil Trifonov, The Philadelphia Orchestra & Yannick Nézet-Séguin",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/3f/f7/aa/3ff7aabc-be45-4a71-4f8b-71a08ddd7932/18UMGIM14901.rgb.jpg/300x300bb.jpg",
+   "url": "https://music.apple.com/be/album/destination-rachmaninov-departure/1425018119"
+  },
   {
    "name": "cut. turn. fade. back.",
    "artist": "Hail the Sun",
@@ -18,24 +36,6 @@
    "artist": "Jesus Molina",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/30/70/d53070a8-9ad6-2631-ff88-26efaa4d1add/789557950340.png/300x300bb.jpg",
    "url": "https://music.apple.com/be/album/selah/1859544099"
-  },
-  {
-   "name": "Newborn Sun",
-   "artist": "Chon",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/14/31/6a/14316aae-ccc2-7c47-1096-145bf47a0a3f/888174245676.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/newborn-sun/701075070"
-  },
-  {
-   "name": "Toss a Coin to Your Witcher (Piano Version) - Single",
-   "artist": "Patrik Pietschmann",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/c6/f5/e1/c6f5e1fd-dd0a-ac63-cc86-8b0f33957434/artwork.jpg/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/toss-a-coin-to-your-witcher-piano-version-single/1496494171"
-  },
-  {
-   "name": "Drukqs (Expanded Edition)",
-   "artist": "Aphex Twin",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/95/35/8d/95358d64-b61e-aa24-d40d-2e7051dc5e78/5056818811784.png/300x300bb.jpg",
-   "url": "https://music.apple.com/be/album/drukqs-expanded-edition/6816158057"
   }
  ]
 }
